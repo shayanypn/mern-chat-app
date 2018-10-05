@@ -5,6 +5,9 @@ import { withRouter } from 'react-router'
 import {subscribe} from 'redux-subscriber';
 
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Back from './pages/Back';
+
 
 class Main extends React.Component {
 
@@ -15,6 +18,8 @@ class Main extends React.Component {
 			<div>
 				<Switch>
 					<Route exact path='/' component={Home}/>
+					<Route exact path='/login' component={Login}/>
+					<Route exact path='/app' component={Back}/>
 				</Switch>
 			</div>
 		)

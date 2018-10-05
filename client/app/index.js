@@ -19,9 +19,10 @@ const history = createHashHistory({
 
 const middleware = routerMiddleware(history);
 
-import $ from 'jquery';
-window.jQuery = $;
-window.$ = $;
+//Include bootstrap's css 
+import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//Include bootstrap's js
+import './../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 
 
