@@ -1,0 +1,60 @@
+1662c027-0f8c-4971-80bc-b4ec79a78e1d 127.0.0.1 - - [2018-10-05T14:42:00.816Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4hPtU HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+7047030d-f25d-46a8-adcd-26d082d3a2be 127.0.0.1 - - [2018-10-05T14:42:06.852Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4hRLy HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+401c7019-9065-4ab3-ab11-2e116fb9deb3 127.0.0.1 - - [2018-10-05T14:42:09.134Z] "GET / HTTP/1.1" - - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+0d638d9a-261f-4758-8362-86ca704decf2 127.0.0.1 - - [2018-10-05T14:42:10.238Z] "GET / HTTP/1.1" - - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+fba60368-6263-4b18-94ee-da56e7f7b02d 127.0.0.1 - - [2018-10-05T14:42:12.880Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4hSq8 HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+018ae776-39d3-4f53-8cf5-44b667d7b1f6 127.0.0.1 - - [2018-10-05T14:42:18.916Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4hUIS HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+9a7f6d1f-e131-4038-9899-7616b13a3e44 127.0.0.1 - - [2018-10-05T14:42:24.944Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4hVmf HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+34ce85f6-4fed-4e1d-8d7d-39078a5c5f65 127.0.0.1 - - [2018-10-05T14:42:30.972Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4hXEq HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+8c36b481-9c3e-4767-acc4-5a6755e62e75 127.0.0.1 - - [2018-10-05T14:42:36.997Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4hYi_ HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+746a94df-5236-429c-a10e-3446ae68a0c8 127.0.0.1 - - [2018-10-05T14:42:43.016Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4haB2 HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+f568498b-28b0-4d17-9dc3-70f66faf67f5 127.0.0.1 - - [2018-10-05T14:49:53.396Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jDFY HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+ae3e7fd4-a155-4b62-a36f-0f4e2d4355b4 127.0.0.1 - - [2018-10-05T14:49:59.434Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jEk0 HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+834f854c-7b4a-48d1-8bce-607e9eea8525 127.0.0.1 - - [2018-10-05T14:50:05.659Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jGFI HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+05c151ea-ef10-4a08-947e-5f1304ebaca1 127.0.0.1 - - [2018-10-05T14:50:11.696Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jHjb HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+d3cadac8-6fdf-4a9b-95a6-734f60e60e2a 127.0.0.1 - - [2018-10-05T14:50:17.934Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jJF4 HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+6d6603d2-2a4f-4e20-a3b8-64c382fcc9d6 127.0.0.1 - - [2018-10-05T14:50:24.172Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jKmc HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+60e54715-a362-419f-b332-eae4c571b314 127.0.0.1 - - [2018-10-05T14:50:30.406Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jMH- HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+274b98fd-8aa0-4587-abf0-27110d7ca9ad 127.0.0.1 - - [2018-10-05T14:50:36.436Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jNmC HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+0e5d5cc1-8926-4009-ab57-c1348160f732 127.0.0.1 - - [2018-10-05T14:50:42.599Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jPGU HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+5bddbeb0-167b-45ab-86ca-075fb3293ad4 127.0.0.1 - - [2018-10-05T14:50:48.627Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jQki HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+dfee3201-577b-482a-97ae-5fcffb7c76cf 127.0.0.1 - - [2018-10-05T14:50:54.660Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jSCx HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+486f59ec-c505-4c5f-b351-1068475b782e 127.0.0.1 - - [2018-10-05T14:51:06.848Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jVBC HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+373c7162-34a6-4e27-9320-bd21e9d7b0d0 127.0.0.1 - - [2018-10-05T14:51:12.977Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jWh9 HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+d7660f61-c38a-4eb4-bbdf-0c89c3257f96 127.0.0.1 - - [2018-10-05T14:51:18.993Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jY9D HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+360541fb-e901-43fc-8fdd-63ff6c00b0f7 127.0.0.1 - - [2018-10-05T14:51:25.011Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jZdC HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+eb9031ba-a8a2-48cd-be8a-d0801422a5df 127.0.0.1 - - [2018-10-05T14:51:25.193Z] "GET / HTTP/1.1" - - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+da973904-42fa-4ce0-8405-c6eba366381f 127.0.0.1 - - [2018-10-05T14:51:31.032Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jb5G HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+2da15c9a-891d-458e-a49d-e4af1f2cc7d2 127.0.0.1 - - [2018-10-05T14:51:37.052Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jcZL HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+71f8a04e-8c17-4bde-8495-007fe5fc10d1 127.0.0.1 - - [2018-10-05T14:51:43.091Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4je1g HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+
+2c5acfb5-52f7-4d9a-b728-26a02d8e1d6a 127.0.0.1 - - [2018-10-05T14:51:49.121Z] "GET /socket.io/?EIO=3&transport=polling&t=MP4jfVr HTTP/1.1" - - "http://localhost:8080/dashboard" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:63.0) Gecko/20100101 Firefox/63.0" 
+

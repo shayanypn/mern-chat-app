@@ -1,0 +1,20 @@
+{
+  "name": "react-000-starterkit",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "shayanypn <shayanypn@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
