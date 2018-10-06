@@ -6,7 +6,7 @@ const create = async (req) => {
 		status: 422,
 		messages: []
 	};
-	const body = req.body;
+	const { body } = req;
 
 
 	if (!helpers.hasValue(body.username)) {
@@ -52,7 +52,6 @@ const deleteByToken = async (req) => {
 		status: 422,
 		messages: []
 	};
-
 	const { token } = req.params;
 
 	if (!helpers.hasValue(token)) {

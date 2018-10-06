@@ -6,7 +6,7 @@ const signup = async (req) => {
 		status: 422,
 		messages: []
 	};
-	const body = req.body;
+	const { body } = req;
 
 
 	if (!helpers.hasValue(body.username)) {

@@ -6,7 +6,7 @@ const logger = require('../utils/logger');
 const createRequestId = require('../middlewares/create-request-id');
 const log = require('../middlewares/log');
 const db = require('../db');
-const usersRoute = require('../routes/users');
+const userRoute = require('../routes/user');
 const tokenRoute = require('../routes/token');
 const homeRoute = require('../routes/home');
 
@@ -36,7 +36,7 @@ if (isTest === false) {
 // routes
 app.use('/', homeRoute);
 app.use('/token', tokenRoute);
-app.use('/users', usersRoute);
+app.use('/user', userRoute);
 
 // 404 error handler
 // app.use((req, res, next) => {
