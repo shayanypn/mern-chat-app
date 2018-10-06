@@ -14,10 +14,10 @@ const getByToken = async (req, res) => {
     }
 
     const user = await User.findOne({ token: params.token })
-                    .select('name token')
-                    .exec(function (err, result) {
-                        return result;
-                    });
+        .select('name token')
+        .exec(function (err, result) {
+            return result;
+        });
 
     if (user === null ) {
         res.status(401).send({
@@ -40,19 +40,19 @@ const create = async (req, res) => {
     }
 
     await User.findOneAndUpdate(
-                {username: body.username},
-                {$set:{token: rand()+rand()}},
-                {new: true},
-                function(err, result){
-                    if(err){
-                        //  TODO
-                    }
-            });
+        {username: body.username},
+        {$set:{token: rand()+rand()}},
+        {new: true},
+        function(err, result){
+            if(err){
+                //  TODO
+            }
+    });
     const user = await User.findOne({ username: body.username })
-                    .select('name token')
-                    .exec(function (err, result) {
-                        return result;
-                    });
+        .select('name token')
+        .exec(function (err, result) {
+            return result;
+        });
 
     res.status(201).send({
         token: user.token
@@ -68,10 +68,10 @@ const deleteByToken = async (req, res) => {
     }
 
     const user = await User.findOne({ token: params.token })
-                    .select('_id name token')
-                    .exec(function (err, result) {
-                        return result;
-                    });
+        .select('_id name token')
+        .exec(function (err, result) {
+            return result;
+        });
 
     if (user === null ) {
         res.status(404).send({
