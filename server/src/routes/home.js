@@ -6,7 +6,8 @@ const { asyncErrorDecorator } = require('../utils/error');
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
-// get all token
 router.get('/', asyncErrorDecorator(controller.get));
+
+router.post('/signup', jsonParser, asyncErrorDecorator(controller.signup));
 
 module.exports = router;

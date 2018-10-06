@@ -1,57 +1,98 @@
 const User = require('../models/user');
-
-const getAll = async (req, res) => {
-  const users = await User.getAll();
-
-  res.send({
-    status: 200,
-    data: users,
-  });
+const Validation = require('../validations/token');
+const rand = () => {
+    return Math.random().toString(36).substr(2);
 };
 
-const getById = async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findById(id).exec();
-  const status = user === null ? 404 : 200;
 
-  res.status(status).send({
-    status,
-    data: user,
-  });
+const getByToken = async (req, res) => {
+    const { params } = req;
+    const validate = await Validation.getByToken(req);
+
+    if (validate !== true) {
+        return res.status(validate.status).send(validate);
+    }
+
+    const user = await User.findOne({ token: params.token })
+                    .select('name token')
+                    .exec(function (err, result) {
+                        return result;
+                    });
+
+    if (user === null ) {
+        res.status(401).send({
+            message: 'authorization problem'
+        });
+    }else{
+        res.status(200).send({
+            status: 'ok'
+        });
+    }
 };
 
 const create = async (req, res) => {
-  const user = await User.create(req.body);
-  res.status(201).send({
-    status: 201,
-    data: user,
-  });
+
+    const { body } = req;
+    const validate = await Validation.create(req);
+
+    if (validate !== true) {
+        return res.status(validate.status).send(validate);
+    }
+
+    await User.findOneAndUpdate(
+                {username: body.username},
+                {$set:{token: rand()+rand()}},
+                {new: true},
+                function(err, result){
+                    if(err){
+                        //  TODO
+                    }
+            });
+    const user = await User.findOne({ username: body.username })
+                    .select('name token')
+                    .exec(function (err, result) {
+                        return result;
+                    });
+
+    res.status(201).send({
+        token: user.token
+    });
 };
 
-const updateById = async (req, res) => {
-  const { body, params: { id } } = req;
-  const user = await User.findByIdAndUpdate(id, body).exec();
+const deleteByToken = async (req, res) => {
+    const { params } = req;
+    const validate = await Validation.getByToken(req);
 
-  res.send({
-    status: 200,
-    data: user,
-  });
-};
+    if (validate !== true) {
+        return res.status(validate.status).send(validate);
+    }
 
-const deleteById = async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findByIdAndRemove(id).exec();
+    const user = await User.findOne({ token: params.token })
+                    .select('_id name token')
+                    .exec(function (err, result) {
+                        return result;
+                    });
 
-  res.send({
-    status: 200,
-    data: user,
-  });
+    if (user === null ) {
+        res.status(404).send({
+            message: 'token not found'
+        });
+    } else {
+        await User.findOneAndUpdate(
+            {_id: user._id},
+            {$set:{token: ''}},
+            function(err, result){
+                if(err){
+                    //  TODO
+                }
+        });
+        res.status(204).send();
+    }
+
 };
 
 module.exports = {
-  getAll,
-  getById,
-  create,
-  updateById,
-  deleteById,
+    getByToken,
+    create,
+    deleteByToken,
 };

@@ -5,28 +5,24 @@ const logger = require('../utils/logger');
 const loggerDispatcher = 'UserModel';
 
 const userSchema = new mongoose.Schema({
-  email: {
+  username: {
     type: String,
     required: [true, 'Email is required'],
     unique: true,
+  },
+  name: {
+    type: String,
+    required: [true, 'Name is required'],
   },
   password: {
     type: String,
     required: [true, 'Password is required'],
   },
-  slug: {
-    type: String
-  },
   token: {
     type: String
   },
-  firstName: {
-    type: String,
-    required: [true, 'First name is required'],
-  },
-  lastName: {
-    type: String,
-    required: [true, 'Last name is required'],
+  expireAt: {
+    type: Date
   },
 });
 

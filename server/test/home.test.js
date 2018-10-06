@@ -12,7 +12,6 @@ let user = null;
 
 process.env.DB_NAME = 'restapi';
 
-// const isDBConnected = () => databaseConnected;
 
 test('Connect to database', t => {
   mongoose
@@ -33,29 +32,30 @@ test('Connect to database', t => {
     });
 });
 
-test('Insert user - POST /users', t => {
+test('Insert user - POST /signup', t => {
   if (databaseConnected === false) {
     t.fail('Database not connected');
     t.end();
   } else {
     const expected = {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'jdoe@gmail.com',
+      name:     'jdoe',
+      username: 'jdoe@gmail.com'
     };
 
     request
-      .post('/users')
-      .send(expected)
+      .post('/signup')
+      .send({
+        username: 'jdoe@gmail.com',
+        password: '123123'
+      })
       .expect(201)
       .expect('Content-Type', /json/)
       .then(res => {
         t.pass('inserted');
         user = res.body.data;
         const actual = {
-          firstName: res.body.data.firstName,
-          lastName: res.body.data.lastName,
-          email: res.body.data.email,
+          name: res.body.data.name,
+          username: res.body.data.username
         };
         t.deepEqual(actual, expected, 'they are equal');
         t.end();
@@ -65,50 +65,4 @@ test('Insert user - POST /users', t => {
         t.end();
       });
   }
-});
-
-test('Retrieve user by id - GET /users/:id', t => {
-  if (databaseConnected === false) {
-    t.fail('Database not connected');
-    t.end();
-  } else {
-    request
-      .get(`/users/${user._id}`)
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .then(res => {
-        t.equal(res.body.data._id, user._id, 'retrieved');
-        t.end();
-      })
-      .catch(err => {
-        t.error(err, 'error');
-        t.end();
-      });
-  }
-});
-
-/* test('Update user´s name - PUT /users/[id]', (t) => {
-  
-});
-
-test('GET /users', (t) => {
-  request(app)
-    .get('/users')
-    .expect(200)
-    .expect('Content-Type', /json/)
-    .end((err, res) => {
-      t.error(err, 'No error');
-      // console.log()
-      t.end();
-    });
-}); */
-
-test.onFinish(() => {
-  try {
-    mongoose.disconnect();
-  } catch (err) {
-    console.error(err);
-  }
-
-  process.exit(0);
 });

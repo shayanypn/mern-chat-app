@@ -6,16 +6,11 @@ const { asyncErrorDecorator } = require('../utils/error');
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
-// get all token
-router.get('/', asyncErrorDecorator(controller.getAll));
 
-// get user by id
-router.get('/:id', asyncErrorDecorator(controller.getById));
+router.get('/:token', asyncErrorDecorator(controller.getByToken));
 
-// create user
 router.post('/', jsonParser, asyncErrorDecorator(controller.create));
 
-// delete user by id
-router.delete('/:id', asyncErrorDecorator(controller.deleteById));
+router.delete('/:token', asyncErrorDecorator(controller.deleteByToken));
 
 module.exports = router;
