@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import models from './model';
+import loading from './loading';
+import user from './user';
 
 const rootReducer = combineReducers({
-	models,
+	loading,
+	user,
 });
 
 export default rootReducer;

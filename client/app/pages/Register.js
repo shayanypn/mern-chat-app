@@ -2,19 +2,17 @@ import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { USER, LOADING } from '../actions';
 
 import TopNavbar from '../components/TopNavbar';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
 
-class Login extends React.Component {
+class Register extends React.Component {
+
 	onSubmit() {
 
-		this.props.dispatch(USER.post({
-			username: this.username.value,
-			password: this.password.value
-		}));
+		console.log( this.username.value);
+
 	}
 
 	render(){
@@ -23,7 +21,7 @@ class Login extends React.Component {
 				<TopNavbar />
 				<div className="container">
 					<div className="row justify-content-md-center">
-						<Card title="Sign In" parentClass="col-5">
+						<Card title="Sign Up" parentClass="col-5">
 							<form onSubmit={e => e.preventDefault() } >
 								<div className="form-group">
 									<label>Email address</label>
@@ -34,13 +32,17 @@ class Login extends React.Component {
 									<label>Password</label>
 									<input type="password" ref={el => this.password=el} className="form-control" placeholder="Password" />
 								</div>
+								<div className="form-group">
+									<label>Confirm Password</label>
+									<input type="password" ref={el => this.confirm_password=el} className="form-control" placeholder="Confirm Password" />
+								</div>
 								<div className="form-group form-check">
 									<input type="checkbox" className="form-check-input" />
 									<label className="form-check-label">Check me out</label>
 								</div>
 								<button
 									onClick={this.onSubmit.bind(this)}
-									className="btn btn-primary">Sing In</button>
+									className="btn btn-primary">Sing up</button>
 							</form>
 						</Card>
 					</div>
@@ -58,4 +60,4 @@ function getState(state){
 	};
 }
 
-export default withRouter(connect(getState)(Login));
+export default withRouter(connect(getState)(Register));

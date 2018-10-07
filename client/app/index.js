@@ -21,6 +21,7 @@ const middleware = routerMiddleware(history);
 
 //Include bootstrap's css 
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './styles/app.scss';
 //Include bootstrap's js
 import './../node_modules/bootstrap/dist/js/bootstrap.min.js';
 

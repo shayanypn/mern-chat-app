@@ -1,6 +1,7 @@
 const { isTest, isProd } = require('./config');
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 const { makeErrorOperational, STATUS_INTERNAL_SERVER_ERROR } = require('../utils/error');
 const logger = require('../utils/logger');
 const createRequestId = require('../middlewares/create-request-id');
@@ -18,8 +19,10 @@ if (isTest === false) {
 
 const app = express();
 
+app.use(cors());
 app.use(createRequestId);
 app.use(helmet());
+
 
 if (isTest === false) {
   app.use([log.request, log.responseOk, log.responseError]);
