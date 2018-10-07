@@ -26,9 +26,9 @@ class BackSidebar extends React.Component {
 						<li className="nav-item">
 							<Link to={`${match.path}/setting`} className="nav-link" >Setting</Link>
 						</li>
-						<li className="nav-item bg-danger">
-							<a onClick={e => this.onLogout.bind(this)}
-								className="nav-link" href="#">Sign Out</a>
+						<li className="nav-item bg-danger"
+							onClick={this.onLogout.bind(this)}>
+							<a href="javascript: void();" className="nav-link">Sign Out</a>
 						</li>
 					</ul>
 				</div>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { USER, LOADING } from '../actions';
 
 import TopNavbar from '../components/TopNavbar';
 import Footer from '../components/Footer';
@@ -11,8 +12,10 @@ class Register extends React.Component {
 
 	onSubmit() {
 
-		console.log( this.username.value);
-
+		this.props.dispatch(USER.create({
+			username: this.username.value,
+			password: this.password.value
+		}));
 	}
 
 	render(){
@@ -55,9 +58,7 @@ class Register extends React.Component {
 
 
 function getState(state){
-	return {
-		state
-	};
+	return state;
 }
 
 export default withRouter(connect(getState)(Register));

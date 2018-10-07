@@ -13,15 +13,16 @@ const defaultUserModel = {
 function model(state = defaultUserModel, action) {
   switch (action.type) {
     case USER.CHECKTOKEN:
-      let _cookie = Cookie.get('ca'),
-      _cookieObj = {};
+      const _cookie = Cookie.get('ca');
+      let _cookieObj = {};
 
-      if ( _cookie != "" ) {
+      console.log(_cookie);
+      if ( _cookie !== "" ) {
         _cookieObj = JSON.parse( _cookie );
       }
 
       if (
-          typeof _cookieObj == 'object' &&
+          typeof _cookieObj === 'object' &&
           _cookieObj.u && 
           _cookieObj.t
         ) {
@@ -46,10 +47,8 @@ function model(state = defaultUserModel, action) {
         isAuthenticate: true
       });
     case USER.LOGOUT:
-
       //clear cookie
-      Cookie.set('ca', '');
-      
+      Cookie.set('ca', '',6);      
       return Object.assign({}, state,{
         username: null,
         password: null,
