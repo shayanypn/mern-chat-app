@@ -16,7 +16,6 @@ function model(state = defaultUserModel, action) {
       const _cookie = Cookie.get('ca');
       let _cookieObj = {};
 
-      console.log(_cookie);
       if ( _cookie !== "" ) {
         _cookieObj = JSON.parse( _cookie );
       }

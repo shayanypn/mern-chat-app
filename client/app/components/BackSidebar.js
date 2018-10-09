@@ -13,13 +13,16 @@ class BackSidebar extends React.Component {
 		const { match } = this.props;
 
 		return (
-			<nav className="col-md-2 d-none d-md-block bg-light sidebar">
+			<nav className="col-md-2 bg-light sidebar">
 				<div className="sidebar__logo">
 					<Link to={`${match.path}/`}>
 						LOGO
 					</Link>
 				</div>
 				<div className="sidebar__chatlist">
+					<Link to={`${match.path}/add-user`}>
+						<button className="sidebar__chatlist_button"> Add </button>
+					</Link>
 				</div>
 				<div className="sidebar__actionbar">
 					<ul className="nav flex-column">
