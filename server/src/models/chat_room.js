@@ -9,13 +9,12 @@ const chatRoomSchema = new mongoose.Schema({
     type: String
   },
   joinedUser: {
-    type: String,
-    ref: 'User'
+    type: String
   },
   name: {
     type: String,
   },
-  description: {
+  Description: {
     type: String,
   },
   isPrivate: {

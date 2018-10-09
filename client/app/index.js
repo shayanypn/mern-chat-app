@@ -30,8 +30,7 @@ import './../node_modules/bootstrap/dist/js/bootstrap.min.js';
 const store = configureStore({
 	loading: {
 		isloading: false
-	},
-	models:[{text: 'Task 1'},{text: 'Task 2',}]
+	}
 });
 
 

@@ -4,30 +4,31 @@ const ClientStore = require('./client');
 
 const search = (req, client) => {
 
-    try {
-        const data = JSON.parse(req);
+	if (ClientStore.isValid(client.id)) {
+		client.emit('authenticate', '401' , null );
+	};
 
-        User.findOne({ token: data.token })
-        .select('name token username')
-        .exec(function (fail, success) {
-            
-            if (fail) {
-                // TODO handle 401
-            }
-            
-            if (success) {
-                ClientStore.add(client.id, data);
-                client.emit('authenticate', null, 'SUCCESS' );
-            }
+	try {
+		User.find({ username: new RegExp(req.username, 'i') })
+		.select('name username')
+		.exec(function (fail, success) {
+			
+			if (fail) {
+				// TODO handle 401
+			}
+			
+			if (success) {
+				client.emit('search_user', null, success );
+			}
 
-            client.emit('authenticate', 'NORESULT', null );
-        });
-    }catch(e){
-        client.emit('authenticate', 'Invalid Params' , null );        
-    }
+			client.emit('search_user', 'NORESULT', null );
+		});
+	}catch(e){
+		client.emit('search_user', 'Invalid Params' , null );
+	}
 };
 
 
 module.exports = {
-    search
+	search
 };

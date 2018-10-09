@@ -13,9 +13,17 @@ class Back extends React.Component {
 	constructor(props){
 		super(props);
 
+		socket.on('get_chatroom', (error,result) => {
+			console.log('chatrooms', error,result);
+		});
 		socket.on('authenticate', (error,result) => {
-			console.log('authenticate' , error, result);
-		})
+			if (error) {
+				console.log('authenticate problem' , error);
+			};
+			if (result) {
+				this.onGetUserContacts();
+			};
+		});
 	}
 	componentDidMount(){
 		const { user } = this.props;
@@ -26,7 +34,7 @@ class Back extends React.Component {
 	}
 
 	onGetUserContacts(){
-
+		socket.emit('get_chatroom');
 	}
 
 	render(){
