@@ -3,6 +3,9 @@ import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { socket } from './../socket';
+import { CHATROOM } from './../actions';
+
+
 
 import Setting from './back/Setting';
 import Dashboard from './back/Dashboard';
@@ -14,7 +17,7 @@ class Back extends React.Component {
 		super(props);
 
 		socket.on('get_chatroom', (error,result) => {
-			console.log('chatrooms', error,result);
+			this.props.dispatch(CHATROOM.update(result));
 		});
 		socket.on('authenticate', (error,result) => {
 			if (error) {

@@ -3,13 +3,15 @@ const redis = require('../utils/redis');
 const logger = require('../utils/logger');
 
 const loggerDispatcher = 'ChatRoomModel';
+const Schema = mongoose.Schema;
 
 const chatRoomSchema = new mongoose.Schema({
   adminUser: {
     type: String
   },
   joinedUser: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   name: {
     type: String,

@@ -62,7 +62,7 @@ export const USER = {
 				headers: { 'Content-Type': 'application/json' }
 			})
 			.then(function (response) {
-				var token = Object.assign({},response.data,data);				
+				var token = Object.assign({},response.data,data);
 				dispatch(LOADING.apply('form_login', false,{
 					type: USER.LOGIN,
 					token
@@ -102,4 +102,23 @@ export const USER = {
 			type: USER.LOGOUT
 		};
 	}
+}
+
+
+
+/*** * * * * * * * * * * 
+ * 		CHAT ROOM
+* * * * * * * * * * ***/
+export const CHATROOM = {
+	LIST: 'LIST',
+	ADDLIST: 'ADDLIST',
+	update: (data) => {
+
+		return (dispatch) => {
+			dispatch({
+				type: CHATROOM.ADDLIST,
+				data
+			});
+		}
+	},
 }

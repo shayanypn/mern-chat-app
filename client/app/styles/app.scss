@@ -17,11 +17,25 @@
         width: 100%;
         position: absolute;
         top: 80px;
-        .sidebar__chatlist_button {
+        .sidebar__chatlist__button {
             background: #999;
             border: none;
             width: 100%;
             height: 40px;
+        }
+        .sidebar__chatlist__list{
+            list-style: none;
+            padding: 0px;
+            .sidebar__chatlist__list__li{
+                border-bottom: 1px solid #dedede;
+                padding: 10px 15px;
+                cursor: pointer;
+                &.sidebar__chatlist__list__li--active{
+                    background: #1674b9;
+                    color: #fff;
+                    font-weight: bold;
+                }
+            }
         }
     }
     .sidebar__actionbar {

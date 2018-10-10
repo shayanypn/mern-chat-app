@@ -1,4 +1,5 @@
 const ChatRoom = require('../models/chat_room');
+const User = require('../models/user');
 const ClientStore = require('./client');
 
 
@@ -61,20 +62,20 @@ const get = (req, client) => {
 	const RequestUser = ClientStore.get(client.id);
 
     try {
-        ChatRoom.find({
-        	adminUser: RequestUser._id
-        })
-        .select('_id name isPrivate')
-        .populate('user', 'name username')
-        .exec(function (fail, success) {
+		ChatRoom.find({
+			adminUser: RequestUser._id
+		})
+		.select('_id joinedUser name description isPrivate')
+		.exec(function (fail, success) {
             
             if (fail) {
                 // TODO handle 401
             }
 
-            console.log(success);
             if (success) {
-                client.emit('get_chatroom', null, success );
+
+				getChatList(success, client);
+				return;
             }
             client.emit('get_chatroom', 'NORESULT', null );
         });
@@ -82,6 +83,39 @@ const get = (req, client) => {
         client.emit('get_chatroom', 'Invalid Params' , null );
     }
 }
+
+
+const getChatList = (chat_rooms, client) => {
+
+	var privateChats = chat_rooms.filter(x=> x.isPrivate).map(x=> {
+		return {
+			_id: x.joinedUser
+		};
+	});
+
+	User.find({$or:privateChats})
+	.select('name username')
+	.exec(function (fail, success) {
+		
+		const chatLists = chat_rooms.map(x => {
+			if (x.isPrivate) {
+				let user = success.find(y => (y._id+'') == (x.joinedUser+''));
+				if (user) {
+					return Object.assign({}, x, {
+						name: user.name,
+						username: user.username
+					});
+				};
+			}
+
+			return x;
+		});
+
+	    client.emit('get_chatroom', null, chatLists );
+	});
+
+}
+
 
 module.exports = {
 	add,

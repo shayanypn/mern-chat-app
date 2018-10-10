@@ -10,7 +10,7 @@ class BackSidebar extends React.Component {
 	}
 
 	render(){
-		const { match } = this.props;
+		const { match, chat_room } = this.props;
 
 		return (
 			<nav className="col-md-2 bg-light sidebar">
@@ -21,8 +21,14 @@ class BackSidebar extends React.Component {
 				</div>
 				<div className="sidebar__chatlist">
 					<Link to={`${match.path}/add-user`}>
-						<button className="sidebar__chatlist_button"> Add </button>
+						<button className="sidebar__chatlist__button"> Add </button>
 					</Link>
+					<ul className="sidebar__chatlist__list">
+						{chat_room.map((x, index) =>{
+							return (<li className={`sidebar__chatlist__list__li ${x.active ? 'sidebar__chatlist__list__li--active' : ''}`}
+								key={index}>{x.name}</li>);
+						})}
+					</ul>
 				</div>
 				<div className="sidebar__actionbar">
 					<ul className="nav flex-column">
@@ -42,10 +48,7 @@ class BackSidebar extends React.Component {
 
 
 function getState(state){
-	return {
-		user: state.user,
-		state
-	};
+	return state;
 }
 
 export default withRouter(connect(getState)(BackSidebar));

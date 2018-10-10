@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Card from './../../components/Card';
@@ -10,19 +10,26 @@ class AddChatUser extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			redirect: false,
 			timer: null,
 			users: []
 		};
 
-		socket.on('add_chatroom', (error,result) => {
-			console.log(error,result);
+		socket.on('add_chatroom', (result, error) => {
+			if (result && result.state === 201) {
+				this.setState({
+					redirect: true
+				});
+			}
+			if (error) {
+				// TODO
+			};
 		})
 		socket.on('search_user', (error,result) => {
 			if (result) {
-				console.log(result);
 				this.setState({
 					users: result
-				})
+				});
 			}
 		})
 	}
@@ -45,6 +52,11 @@ class AddChatUser extends React.Component {
 	}
 
 	render(){
+
+		if (this.state.redirect) {
+			return <Redirect to='/app/' />
+		};
+
 		return (
 			<div className="row justify-content-md-center">
 				<Card title="Add Chat" parentClass="col-8">
@@ -60,7 +72,7 @@ class AddChatUser extends React.Component {
 						<div className="form-group">
 							<div className="list-group">
 								{this.state.users.map((x,index) => {
-									return (<button key={{index}} type="button"
+									return (<button key={index} type="button"
 										onClick={e => this.onClick(x)}
 										className="list-group-item list-group-item-action">
 										{x.name}  | {x.username}
