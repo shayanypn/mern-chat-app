@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import loading from './loading';
 import user from './user';
-import chat_room from './chat_room';
+import room from './room';
+import channel from './channel';
 
 const rootReducer = combineReducers({
 	loading,
 	user,
-	chat_room,
+	room,
+	channel,
 });
 
 export default rootReducer;

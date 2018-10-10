@@ -2,8 +2,10 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import Card from './../../components/Card';
 import { socket } from './../../socket';
+import { CHATROOM } from './../../actions';
+
+import Card from './../../components/Card';
 
 class AddChatUser extends React.Component {
 
@@ -33,9 +35,10 @@ class AddChatUser extends React.Component {
 			}
 		})
 	}
-
+	componentDidMount(){
+		this.props.dispatch({type: CHATROOM.DECTIVE});
+	}
 	onSearch() {
-
 		clearTimeout(this.state.timer);
 		const timer = setTimeout(()=>{
 			socket.emit('search_user', {

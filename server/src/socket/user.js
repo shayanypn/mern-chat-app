@@ -3,9 +3,10 @@ const ClientStore = require('./client');
 
 
 const search = (req, client) => {
-
 	if (ClientStore.isValid(client.id)) {
-		client.emit('authenticate', '401' , null );
+		client.emit('authenticate', null, {
+			status: 401
+		});
 	};
 
 	try {

@@ -3,11 +3,8 @@ const ClientStore = require('./client');
 
 
 const authorize = (req, client) => {
-
     try {
-        const data = JSON.parse(req);
-
-        User.findOne({ token: data.token })
+        User.findOne({ token: req.token })
         .select('name token username')
         .exec(function (fail, success) {
             
@@ -16,14 +13,17 @@ const authorize = (req, client) => {
             }
             
             if (success) {
-                ClientStore.add(client.id, data);
-                client.emit('authenticate', null, 'SUCCESS' );
+                ClientStore.add(client.id, req);
+                client.emit('authenticate', {
+                    status: 200
+                }, null);
             }
-
-            client.emit('authenticate', 'NORESULT', null );
         });
     }catch(e){
-        client.emit('authenticate', 'Invalid Params' , null );        
+        client.emit('authenticate', null , {
+            status: 500,
+            message: e
+        });     
     }
 };
 

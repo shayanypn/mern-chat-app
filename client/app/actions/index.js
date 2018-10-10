@@ -104,21 +104,24 @@ export const USER = {
 	}
 }
 
-
+/*** * * * * * * * * * * 
+ * 		ROOM
+* * * * * * * * * * ***/
+export const ROOM = {
+	LIST: 'ROOM_LIST',
+	UPDATE: 'ROOM_UPDATE',
+	ADDLIST: 'ROOM_ADDLIST',
+	ACTIVE: 'ROOM_ACTIVE',
+	DECTIVE: 'ROOM_DECTIVE'
+}
 
 /*** * * * * * * * * * * 
- * 		CHAT ROOM
+ * 		CHANNEL
 * * * * * * * * * * ***/
-export const CHATROOM = {
-	LIST: 'LIST',
-	ADDLIST: 'ADDLIST',
-	update: (data) => {
-
-		return (dispatch) => {
-			dispatch({
-				type: CHATROOM.ADDLIST,
-				data
-			});
-		}
-	},
+export const CHANNEL = {
+	LIST: 'CHANNEL_LIST',
+	UPDATE: 'CHANNEL_UPDATE',
+	ADDLIST: 'CHANNEL_ADDLIST',
+	ACTIVE: 'CHANNEL_ACTIVE',
+	DECTIVE: 'CHANNEL_DECTIVE'
 }
