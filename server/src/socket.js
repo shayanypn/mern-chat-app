@@ -3,6 +3,7 @@ const { search } = require('./socket/user');
 const ClientStore = require('./socket/client');
 const Room = require('./socket/room');
 const Channel = require('./socket/channel');
+const Message = require('./socket/message');
 
 const Socket = (client) => {
 	var ClientID = client.id;
@@ -15,13 +16,10 @@ const Socket = (client) => {
 	client.on('get_room_channel', (req) => Channel.get(req, client) );
 	client.on('add_room_channel', (req) => Channel.add(req, client) );
 
+	client.on('get_channel_message', (req) => Message.get(req, client) );
 
 
-	// client.on('search_user', (req) => search(req, client) );
-	// client.on('add_chatroom', (req) => ChatRoom.add(req, client) );
-	// client.on('get_chatroom', (req) => ChatRoom.get(req, client) );
-	// client.on('add_message', (req) => ChatMessage.add(req, client) );
-	// client.on('get_message', (req) => ChatMessage.get(req, client) );
+
 }
 
 module.exports = Socket;

@@ -77,7 +77,7 @@ class Back extends React.Component {
 			<div className="container-fluid">
 				<div className="row">
 					<BackSidebar />
-					<main role="main" className="col-md-10 col-lg-10 nopadding">
+					<main role="main" className="col-8 nopadding">
 						<BackNavbar />
 						<div className="col">
 							<Route exact path={`${match.path}/`} component={Dashboard} />
