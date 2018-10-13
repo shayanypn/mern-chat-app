@@ -5,8 +5,6 @@ import { withRouter } from 'react-router';
 import { socket } from './../socket';
 import { CHATROOM, ROOM, CHANNEL } from './../actions';
 
-
-
 import Setting from './back/Setting';
 import Dashboard from './back/Dashboard';
 import AddChatUser from './back/AddChatUser';

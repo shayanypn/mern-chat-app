@@ -26,7 +26,7 @@ roomSchema.statics.getAll = async function roomGetAll() {
   let data;
 
   try {
-    data = await redis.getAsync('Room');
+    data = await redis.getAsync('rooms');
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'roomGetAll' });
   }
@@ -35,7 +35,7 @@ roomSchema.statics.getAll = async function roomGetAll() {
   data = await this.find().exec();
 
   try {
-    redis.client.set('Room', JSON.stringify(data), 'EX', 60);
+    redis.client.set('rooms', JSON.stringify(data), 'EX', 60);
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'roomGetAll' });
   }
@@ -43,6 +43,6 @@ roomSchema.statics.getAll = async function roomGetAll() {
   return data;
 };
 
-const Room = mongoose.model('Room', roomSchema, 'Room');
+const Room = mongoose.model('Room', roomSchema, 'rooms');
 
 module.exports = Room;

@@ -21,14 +21,14 @@ const messageSchema = new mongoose.Schema({
   },
   text: {
     type: String,
-  }
+  },
 });
 
 messageSchema.statics.getAll = async function messageGetAll() {
   let data;
 
   try {
-    data = await redis.getAsync('Message');
+    data = await redis.getAsync('messages');
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'messageGetAll' });
   }
@@ -37,7 +37,7 @@ messageSchema.statics.getAll = async function messageGetAll() {
   data = await this.find().exec();
 
   try {
-    redis.client.set('Message', JSON.stringify(data), 'EX', 60);
+    redis.client.set('messages', JSON.stringify(data), 'EX', 60);
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'messageGetAll' });
   }
@@ -45,6 +45,6 @@ messageSchema.statics.getAll = async function messageGetAll() {
   return data;
 };
 
-const Message = mongoose.model('Message', messageSchema, 'Message');
+const Message = mongoose.model('Message', messageSchema, 'messages');
 
 module.exports = Message;

@@ -25,15 +25,14 @@ const userSchema = new mongoose.Schema({
   },
   expireAt: {
     type: Date
-  },
-  messages: [{ type: Schema.Types.ObjectId, ref: 'messages' }]
+  }
 });
 
 userSchema.statics.getAll = async function userGetAll() {
   let data;
 
   try {
-    data = await redis.getAsync('User');
+    data = await redis.getAsync('users');
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'userGetAll' });
   }
@@ -42,7 +41,7 @@ userSchema.statics.getAll = async function userGetAll() {
   data = await this.find().exec();
 
   try {
-    redis.client.set('User', JSON.stringify(data), 'EX', 60);
+    redis.client.set('users', JSON.stringify(data), 'EX', 60);
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'userGetAll' });
   }
@@ -50,6 +49,6 @@ userSchema.statics.getAll = async function userGetAll() {
   return data;
 };
 
-const User = mongoose.model('User', userSchema, 'User');
+const User = mongoose.model('User', userSchema, 'users');
 
 module.exports = User;

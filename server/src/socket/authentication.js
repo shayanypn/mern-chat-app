@@ -4,11 +4,15 @@ const User = require('../models/user');
 const authorize = (req, client, ClientStore) => {
     try {
         User.findOne({ token: req.token })
-        .select('name token username')
+        .select('_id name token username')
         .exec(function (fail, success) {
-            
             if (success) {
-                ClientStore.add(client.id, req);
+                ClientStore.add(client.id, {
+                    name: success.name,
+                    token: success.token,
+                    username: success.username,
+                    _id: success._id
+                });
                 client.emit('authenticate', {
                     status: 200
                 }, null);

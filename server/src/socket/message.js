@@ -21,7 +21,6 @@ const get = (req, client, ClientStore) => {
 		});
 		return;
 	}
-	console.log('get message' ,  req);
 
 	try {
 		Message.find({
@@ -29,13 +28,10 @@ const get = (req, client, ClientStore) => {
 			channel: req.channel
 		})
 		.populate('author', 'name')
-		//.select('text author')
 		.exec(function (fail, success) {
 			if (success) {
-				console.log(success);
 				client.emit('get_channel_message', success, null );
 			}
-
 			if (fail) {
 			    // TODO handle 401
 			}
@@ -57,13 +53,13 @@ const add = (req, client, ClientStore) => {
 	};
 	const RequestUser = ClientStore.get(client.id);
 
-	if (!req || !req.channel || !req.room) {
+	if (!req || !req.channel || !req.room || !RequestUser._id) {
 		client.emit('add_channel_message', null, {
 			status: 422
 		});
 		return;
 	}
-	console.log('add message' ,  req);
+
 	try {
 		Channel.find({
 			_id: req.channel,

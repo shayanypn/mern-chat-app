@@ -15,7 +15,9 @@ class ChatMessage extends React.Component {
 					<div className="message__list__item">
 						<div className="message__list__item__avatar"></div>
 						<div className="message__list__item__text">
-							<div className="message__list__item__text__auther">shayan <span>12:41 PM</span></div>
+							<div className="message__list__item__text__auther">
+								{_message.author ? _message.author.name : ''} <span>12:41 PM</span>
+							</div>
 							{_message.text}
 						</div>
 					</div>
