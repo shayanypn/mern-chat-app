@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "homepage": "https://github.com/shayanypn/mern-chat-app",
+  "homepage": "https://shayanypn.github.io/mern-chat-app/",
   "scripts": {
     "start": "webpack-dev-server --port 4800 --history-api-fallback",
     "build": "webpack --optimize-minimize",
