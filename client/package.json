@@ -1,13 +1,16 @@
 {
-  "name": "bookmark-web-ux",
+  "name": "mern-chat-app",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://github.com/shayanypn/mern-chat-app",
   "scripts": {
     "start": "webpack-dev-server --port 4800 --history-api-fallback",
     "build": "webpack --optimize-minimize",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/app/__tests__/setup/setupEnzyme.js",
@@ -20,6 +23,7 @@
     "bootstrap": "^4.1.3",
     "css-loader": "^0.28.5",
     "file-loader": "^1.1.6",
+    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^2.30.1",
     "jquery": "^3.3.1",
     "moment": "^2.21.0",
