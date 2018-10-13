@@ -24,7 +24,6 @@ class Main extends React.Component {
 			if (result) {
 				socket.emit('get_room');
 			}
-
 			if (error) {
 				console.log('authenticate problem' , error);
 			}
@@ -36,9 +35,16 @@ class Main extends React.Component {
 					rooms: result
 				});
 			}
-
 			if (error) {
 				console.log('get_room' , error);
+			}
+		});
+		socket.on('add_room', (result, error) => {
+			if (result) {
+				socket.emit('get_room');
+			}
+			if (error) {
+				console.log('add_room' , error);
 			}
 		});
 		socket.on('get_room_channel', (result, error) => {
@@ -53,13 +59,12 @@ class Main extends React.Component {
 				console.log('get_room_channel' , error);
 			}
 		});
-		socket.on('get_room_channel', (result, error) => {
+		socket.on('add_room_channel', (result, error) => {
 			if (result) {
-				// socket.emit('get_room_channel');
+				socket.emit('add_room_channel');
 			}
-
 			if (error) {
-				console.log('get_room_channel' , error);
+				console.log('add_room_channel' , error);
 			}
 		});
 

@@ -6,11 +6,14 @@ const loggerDispatcher = 'ChannelModel';
 const Schema = mongoose.Schema;
 
 const channelSchema = new mongoose.Schema({
+  _id: Schema.Types.ObjectId,
   user: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   room: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'Room'
   },
   name: {
     type: String,
@@ -30,7 +33,7 @@ channelSchema.statics.getAll = async function channelGetAll() {
   let data;
 
   try {
-    data = await redis.getAsync('channels');
+    data = await redis.getAsync('Channel');
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'channelGetAll' });
   }
@@ -39,7 +42,7 @@ channelSchema.statics.getAll = async function channelGetAll() {
   data = await this.find().exec();
 
   try {
-    redis.client.set('channels', JSON.stringify(data), 'EX', 60);
+    redis.client.set('Channel', JSON.stringify(data), 'EX', 60);
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'channelGetAll' });
   }
@@ -47,6 +50,6 @@ channelSchema.statics.getAll = async function channelGetAll() {
   return data;
 };
 
-const Channel = mongoose.model('Channel', channelSchema, 'channels');
+const Channel = mongoose.model('Channel', channelSchema, 'Channel');
 
 module.exports = Channel;

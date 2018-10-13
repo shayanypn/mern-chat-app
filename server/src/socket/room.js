@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Room = require('../models/room');
 const ClientStore = require('./client');
 
@@ -58,6 +59,7 @@ const add = (req, client, ClientStore) => {
 				
 				if (success.length === 0) {
 					Room.create({
+						_id: new mongoose.Types.ObjectId(),
 						user: RequestUser._id,
 						name: req.name,
 						description: req.name,

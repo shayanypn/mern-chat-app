@@ -15,9 +15,6 @@ class BackNavbar extends React.Component {
 					<li className="nav-item">
 						<Link className="nav-link" to={`${match.path}/`}>Home</Link>
 					</li>
-					<li className="nav-item">
-						<Link className="nav-link" to={`${match.path}/room`}>Rooms</Link>
-					</li>
 				</ul>
 			</nav>
 		)

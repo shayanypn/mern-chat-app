@@ -6,14 +6,18 @@ const loggerDispatcher = 'MessageModel';
 const Schema = mongoose.Schema;
 
 const messageSchema = new mongoose.Schema({
-  user: {
-    type: String
+  _id: Schema.Types.ObjectId,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   room: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'Room'
   },
   channel: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'Channel'
   },
   text: {
     type: String,
@@ -24,7 +28,7 @@ messageSchema.statics.getAll = async function messageGetAll() {
   let data;
 
   try {
-    data = await redis.getAsync('messages');
+    data = await redis.getAsync('Message');
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'messageGetAll' });
   }
@@ -33,7 +37,7 @@ messageSchema.statics.getAll = async function messageGetAll() {
   data = await this.find().exec();
 
   try {
-    redis.client.set('messages', JSON.stringify(data), 'EX', 60);
+    redis.client.set('Message', JSON.stringify(data), 'EX', 60);
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'messageGetAll' });
   }
@@ -41,6 +45,6 @@ messageSchema.statics.getAll = async function messageGetAll() {
   return data;
 };
 
-const Message = mongoose.model('Message', messageSchema, 'messages');
+const Message = mongoose.model('Message', messageSchema, 'Message');
 
 module.exports = Message;

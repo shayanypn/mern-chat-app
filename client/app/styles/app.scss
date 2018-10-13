@@ -1,5 +1,10 @@
 
-
+$COLOR_BLACK: #000000;
+$COLOR_WHITE: #ffffff;
+$COLOR_DARK: #332732;
+$COLOR_NORMAL: #4d394b;
+$COLOR_LIGHT: #958994;
+$COLOR_LIGHT_40: #dedede;
 
 
 .nopadding{
@@ -9,51 +14,128 @@
 
 .sidebar {
     height: 100vh;
+    width: 250px;
+    max-width: 250px;
     border-right: 1px solid #dedede;
     padding: 0px;
     position: relative;
-    .sidebar__logo {
-        background: #dedede;
-        top: 0px;
+    .sidebar__room {
+        background: $COLOR_DARK;
+        width: 60px;
+        height: 100vh;
         position: absolute;
-        width: 100%;
-        height: 80px;
-    }
-    .sidebar__chatlist {
-        height: calc( 100% - 160px );
-        width: 100%;
-        position: absolute;
-        top: 80px;
-        .sidebar__chatlist__button {
-            background: #999;
-            border: none;
-            width: 100%;
-            height: 40px;
-        }
-        .sidebar__chatlist__list{
+        left: 0px;
+        .sidebar__room__actionbar {
             list-style: none;
             padding: 0px;
-            .sidebar__chatlist__list__li{
-                border-bottom: 1px solid #dedede;
-                padding: 10px 15px;
+            margin: 0px;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            li {
+                border-top: 1px solid $COLOR_LIGHT;
+                width: 100%;
+                font-size: 12px;
+                text-align: center;
+                padding: 15px 0px;
                 cursor: pointer;
-                &.sidebar__chatlist__list__li--active{
-                    background: #1674b9;
-                    color: #fff;
+                a {
+                    padding: 0px;
+                }
+                path {
+                    fill: $COLOR_LIGHT;
+                }
+            }
+        }
+        .sidebar__room__list{
+            list-style: none;
+            padding: 0px;
+            margin: 0 0 15px 0;
+            width: 100%;
+            .sidebar__room__list__li{
+                width: 100%;
+                font-size: 12px;
+                text-align: center;
+                padding: 5px 0px;
+                cursor: pointer;
+                position: relative;
+                path {
+                    fill: $COLOR_NORMAL;
+                }
+                &.sidebar__room__list__li--active {
+                    path {
+                        fill: $COLOR_LIGHT;
+                    }
+                    &:after {
+                        background: $COLOR_LIGHT;
+                        position: absolute;
+                        content: ' ';
+                        width: 5px;
+                        height: 40px;
+                        top: calc(50% - 20px);
+                        left: 0px;
+                        border-radius: 0 4px 4px 0;
+                    }
+                }
+            }
+        }
+    }
+    .sidebar__channel {
+        background: $COLOR_NORMAL;
+        width: calc( 100% - 60px );
+        height: 100vh;
+        position: absolute;
+        right: 0px;
+        padding-right: 10px;
+        .sidebar__channel__title {
+            width: 100%;
+            border-bottom: 1px solid $COLOR_DARK;
+            color: $COLOR_LIGHT;
+            padding: 10px;
+            margin-bottom: 15px;
+            h4 {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+        .sidebar__channel__add{
+            a {
+                font-size: 9px;
+                color: $COLOR_LIGHT;
+                path {
+                    fill: $COLOR_LIGHT;
+                }
+            }
+        }
+        .sidebar__channel__list {
+            list-style: none;
+            padding: 0px;
+            margin: 0 0 15px 0;
+            width: 100%;
+            .sidebar__channel__list__li {
+                width: 100%;
+                font-size: 12px;
+                padding: 5px 5px 5px 10px;
+                cursor: pointer;
+                position: relative;
+                color: $COLOR_LIGHT;
+                font-size: 15px;
+                &.sidebar__channel__list__li--active{
+                    background: $COLOR_LIGHT;
+                    color: $COLOR_WHITE;
+                    border-radius: 0 4px 4px 0;
                     font-weight: bold;
                 }
             }
         }
     }
-    .sidebar__actionbar {
-        background: #dedede;
-        bottom: 0px;
-        position: absolute;
-        width: 100%;
-        height: 80px;
-    }
 }
 
+main {
+    width: calc( 100% - 250px ) !important;
+    max-width: calc( 100% - 250px ) !important;
+}
 
 .bx-loading{
 	background: rgba(255,255,255,0.7);
@@ -104,3 +186,63 @@
     }
 }
 
+
+
+.message {
+    .message__list {
+        overflow-y: scroll;
+        height: calc(100vh - 150px);
+        max-height: calc(100vh - 150px);
+        .message__list__item {        
+            position: relative;
+            width: 100%;
+            display: flex;
+            margin-bottom: 10px;
+            .message__list__item__avatar{
+                background: url('../images/avatar.png') no-repeat scroll center center / cover;
+                height: 32px;
+                width: 32px;
+                border: 1px solid $COLOR_LIGHT_40;
+                border-radius: 50%;
+            }
+            .message__list__item__text {
+                width: calc(100% - 34px);
+                padding: 0 8px;
+                .message__list__item__text__auther {
+                    font-weight: bold;
+                    span {
+                        font-size: 11px;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+    .message__form {
+        border: 2px solid $COLOR_LIGHT_40;
+        border-radius: 4px;
+        height: 48px;
+        margin: 5px;
+        textarea {
+            overflow: auto;
+            resize: none;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-left: 2px solid $COLOR_LIGHT_40;
+            padding: 5px 15px;
+            outline: none !important;
+        }
+        button {
+            background: transparent;
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+            path {
+                fill: $COLOR_LIGHT_40;
+            }
+        }
+    }
+}

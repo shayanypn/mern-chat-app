@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Room = require('../models/room');
 const Channel = require('../models/channel');
 
@@ -22,6 +23,7 @@ const add = (req, client, ClientStore) => {
 				
 				if (success.length === 0) {
 					Channel.create({
+						_id: new mongoose.Types.ObjectId(),
 						user: RequestUser._id,
 						room: req.room_id,
 						name: req.name,

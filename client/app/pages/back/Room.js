@@ -15,53 +15,29 @@ class Room extends React.Component {
 			timer: null,
 			users: []
 		};
-
-		// socket.on('add_chatroom', (result, error) => {
-		// 	if (result && result.state === 201) {
-		// 		this.setState({
-		// 			redirect: true
-		// 		});
-		// 	}
-		// 	if (error) {
-		// 		// TODO
-		// 	};
-		// })
-		// socket.on('search_user', (error,result) => {
-		// 	if (result) {
-		// 		this.setState({
-		// 			users: result
-		// 		});
-		// 	}
-		// })
 	}
 	onSubmit(){
 		socket.emit('add_room', {
 			name: this.room_name.value
 		});
-		// this.props.history.push('/app/chat-detail');
 	}
 
-
-	// onSearch() {
-	// 	clearTimeout(this.state.timer);
-	// 	const timer = setTimeout(()=>{
-	// 		socket.emit('search_user', {
-	// 			username: this.username.value
-	// 		});
-	// 	}, 200);
-
-	// 	this.setState({
-	// 		timer: timer
-	// 	});
-	// }
-	// onClick(user){
-	// 	socket.emit('add_chatroom', user)
-	// }
-
 	render(){
+		const { room } = this.props;
+
 		return (
 			<div className="row justify-content-md-center">
-				<Card title="Add Chat" parentClass="col-8">
+				<div className="col-12">
+					<h2>Room List </h2>
+				</div>
+				<div className="col-12">
+					<ul className="list-group">
+						{room.map((x, index) =>{
+							return (<li key={index} className="list-group-item">{x.name}</li>);
+						})}
+					</ul>
+				</div>
+				<Card parentClass="col-12 mt-3">
 					<form onSubmit={e => e.preventDefault() } >
 						<div className="form-group">
 							<label>Room Name</label>

@@ -9,9 +9,9 @@ class Card extends React.Component {
 		return (
 			<div className={parentClass ? parentClass : ''}>
 				<div className="card">
-					<div className="card-header text-center">
+					{title ? (<div className="card-header text-center">
 						<h2>{title}</h2>
-					</div>
+					</div>) : ''}
 					<div className="card-body">
 						{children}
 					</div>

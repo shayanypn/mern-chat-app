@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import Ionicon from 'react-ionicons'
 import { socket } from './../socket';
 import ChatMessage from './ChatMessage';
 
@@ -48,21 +49,27 @@ class ChatForm extends React.Component {
 		const { messages } = this.props;
 
 		return (
-			<div className="row">
-				<div className="col">
-					{messages.map((x, index) => {
-						return (<ChatMessage key={index} _message={x} />);
-					})}
-					<div className="row">
-						<div className="col-10">
-							<textarea className="form-control"
-								ref={el => this.message=el}  />
-						</div>
-						<div className="col-2">
-							<button 
-								onClick={this.onSend.bind(this)}
-								className="btn btn-primary" type="button">Send</button>
-						</div>
+			<div className="message">
+				<div className="row message__list">
+					<div className="col" >
+						{messages.map((x, index) => {
+							return (<ChatMessage key={index} _message={x} />);
+						})}
+					</div>
+				</div>
+				<div className="row message__form">
+					<div className="col-1 pl-0 pr-0">
+						<button type="button">
+							<Ionicon icon="md-add" fontSize="25px" />
+						</button>
+					</div>
+					<div className="col-10 pl-0 pr-0">
+						<textarea ref={el => this.message=el}  />
+					</div>
+					<div className="col-1 pl-0 pr-0">
+						<button type="button" onClick={this.onSend.bind(this)}>
+							<Ionicon icon="ios-send" fontSize="25px" />
+						</button>
 					</div>
 				</div>
 			</div>

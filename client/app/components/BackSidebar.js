@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import Ionicon from 'react-ionicons'
 import { USER, ROOM, CHANNEL } from '../actions';
 import { socket } from './../socket';
 
@@ -37,6 +38,7 @@ class BackSidebar extends React.Component {
 			room: room._id,
 			channel: channel._id
 		});
+		this.props.history.push('/app/');
 	}
 
 
@@ -47,42 +49,43 @@ class BackSidebar extends React.Component {
 
 		return (
 			<nav className="col-4 bg-light sidebar">
-				<div className="sidebar__logo">
-					<Link to={`${match.path}/`}>
-						LOGO
-					</Link>
+				<div className="sidebar__room">
+					<ul className="sidebar__room__list">
+						{room.map((x, index) =>{
+							return (<li className={`sidebar__room__list__li ${x.active ? 'sidebar__room__list__li--active' : ''}`}
+								onClick={e=> this.onRoomClick(x)}
+								key={index}><Ionicon icon="md-radio-button-off" fontSize="40px" /></li>);
+						})}
+						<li className="sidebar__room__list__li mt-3" >
+							<Link to={`${match.path}/room`}>
+								<Ionicon icon="ios-add-circle-outline" fontSize="40px"  />
+							</Link>
+						</li>
+					</ul>
+
+					<ul className="sidebar__room__actionbar">
+						<li>
+							<Link to={`${match.path}/setting`} className="nav-link" >
+								<Ionicon icon="ios-cog" />
+							</Link>
+						</li>
+						<li onClick={this.onLogout.bind(this)}>
+							<Ionicon icon="ios-power" />
+						</li>
+					</ul>
 				</div>
-				<div className="sidebar__chatlist">
-					<div className="row">
-						<div className="col-4 pr-0">
-							<ul className="sidebar__chatlist__list">
-								{room.map((x, index) =>{
-									return (<li className={`sidebar__chatlist__list__li ${x.active ? 'sidebar__chatlist__list__li--active' : ''}`}
-										onClick={e=> this.onRoomClick(x)}
-										key={index}>{x.name}</li>);
-								})}
-							</ul>
-						</div>
-						<div className="col-8 pl-0">
-							{activeRoom ? (<Link to={`${match.path}channel`}> <button className="btn btn-primary btn-sm"> add channel</button></Link>) : ''}
-							<ul className="sidebar__chatlist__list nopadding mt-5">
-								{channel.map((x,index) =>{
-									return (<li className={`sidebar__chatlist__list__li ${x.active ? 'sidebar__chatlist__list__li--active' : ''}`}
-											onClick={e => this.onClickChannel(activeRoom, x)} key={index}>{x.name}</li>)
-								})}
-							</ul>
-						</div>
+				<div className="sidebar__channel">
+					<div className="sidebar__channel__title">
+						<h4>{activeRoom ? activeRoom.name : ''}</h4>
 					</div>
-				</div>
-				<div className="sidebar__actionbar">
-					<ul className="nav flex-column">
-						<li className="nav-item">
-							<Link to={`${match.path}/setting`} className="nav-link" >Setting</Link>
-						</li>
-						<li className="nav-item bg-danger"
-							onClick={this.onLogout.bind(this)}>
-							<a className="nav-link">Sign Out</a>
-						</li>
+					<div className="sidebar__channel__add text-right">
+						{activeRoom ? (<Link to={`${match.path}/channel`}>add new channel<Ionicon icon="md-add-circle" /></Link>) : ''}
+					</div>
+					<ul className="sidebar__channel__list nopadding">
+						{channel.map((x,index) =>{
+							return (<li className={`sidebar__channel__list__li ${x.active ? 'sidebar__channel__list__li--active' : ''}`}
+									onClick={e => this.onClickChannel(activeRoom, x)} key={index}>{x.name}</li>)
+						})}
 					</ul>
 				</div>
 			</nav>

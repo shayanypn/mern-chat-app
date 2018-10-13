@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const User = require('../models/user');
 const Room = require('../models/room');
 const Channel = require('../models/channel');
 const Message = require('../models/message');
@@ -19,16 +21,18 @@ const get = (req, client, ClientStore) => {
 		});
 		return;
 	}
+	console.log('get message' ,  req);
 
 	try {
 		Message.find({
 			room: req.room,
 			channel: req.channel
 		})
-		.select('text')
+		.populate('author', 'name')
+		//.select('text author')
 		.exec(function (fail, success) {
-
 			if (success) {
+				console.log(success);
 				client.emit('get_channel_message', success, null );
 			}
 
@@ -59,7 +63,7 @@ const add = (req, client, ClientStore) => {
 		});
 		return;
 	}
-
+	console.log('add message' ,  req);
 	try {
 		Channel.find({
 			_id: req.channel,
@@ -70,7 +74,8 @@ const add = (req, client, ClientStore) => {
 			if (success) {
 				if (success.length !== 0) {
 					Message.create({
-						user: RequestUser._id,
+						_id: new mongoose.Types.ObjectId(),
+						author: RequestUser._id,
 						room: req.room,
 						channel: req.channel,
 						text: req.text,

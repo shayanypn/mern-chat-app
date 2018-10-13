@@ -12,7 +12,13 @@ class ChatMessage extends React.Component {
 		return (
 			<div className="row">
 				<div className="col">
-					<div className="alert alert-info p-1">{_message.text}</div>
+					<div className="message__list__item">
+						<div className="message__list__item__avatar"></div>
+						<div className="message__list__item__text">
+							<div className="message__list__item__text__auther">shayan <span>12:41 PM</span></div>
+							{_message.text}
+						</div>
+					</div>
 				</div>
 			</div>
 		)

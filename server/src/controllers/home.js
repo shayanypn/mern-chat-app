@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const validation = require('../validations/home');
 const User = require('../models/user');
 
@@ -16,6 +17,7 @@ const signup = async (req, res) => {
 	}
 
 	const user = await User.create({
+		_id: new mongoose.Types.ObjectId(),
 		username: req.body.username,
 		password: req.body.password,
 		token: '',

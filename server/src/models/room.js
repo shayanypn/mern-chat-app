@@ -6,8 +6,10 @@ const loggerDispatcher = 'RoomModel';
 const Schema = mongoose.Schema;
 
 const roomSchema = new mongoose.Schema({
+  _id: Schema.Types.ObjectId,
   user: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   },
   name: {
     type: String,
@@ -15,7 +17,6 @@ const roomSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   user_count: {
     type: Number
   },
@@ -25,7 +26,7 @@ roomSchema.statics.getAll = async function roomGetAll() {
   let data;
 
   try {
-    data = await redis.getAsync('rooms');
+    data = await redis.getAsync('Room');
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'roomGetAll' });
   }
@@ -34,7 +35,7 @@ roomSchema.statics.getAll = async function roomGetAll() {
   data = await this.find().exec();
 
   try {
-    redis.client.set('rooms', JSON.stringify(data), 'EX', 60);
+    redis.client.set('Room', JSON.stringify(data), 'EX', 60);
   } catch (err) {
     logger.error(err, { dispatcher: loggerDispatcher, from: 'roomGetAll' });
   }
@@ -42,6 +43,6 @@ roomSchema.statics.getAll = async function roomGetAll() {
   return data;
 };
 
-const Room = mongoose.model('Room', roomSchema, 'rooms');
+const Room = mongoose.model('Room', roomSchema, 'Room');
 
 module.exports = Room;

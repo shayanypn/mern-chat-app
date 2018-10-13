@@ -25,8 +25,6 @@ import './styles/app.scss';
 //Include bootstrap's js
 import './../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
-
-
 const store = configureStore({
 	loading: {
 		isloading: false
