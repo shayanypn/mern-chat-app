@@ -2,11 +2,13 @@ const Room = require('../models/room');
 const ClientStore = require('./client');
 
 
-const search = (req, client) => {
-	if (ClientStore.isValid(client.id)) {
+const search = (req, client, ClientStore) => {
+
+	if (ClientStore.notValid(client.id)) {
 		client.emit('authenticate', null, {
 			status: 401
 		});
+		return;
 	};
 
 	try {
@@ -14,13 +16,14 @@ const search = (req, client) => {
 		.select('name description user_count')
 		.exec(function (fail, success) {
 			
+			if (success) {
+				client.emit('search_room', success, null );
+			}
+
 			if (fail) {
 				// TODO handle 400
 			}
 			
-			if (success) {
-				client.emit('search_room', success, null );
-			}
 		});
 	}catch(e){
 		client.emit('search_room', null , {
@@ -31,11 +34,12 @@ const search = (req, client) => {
 };
 
 
-const add = (req, client) => {
-	if (ClientStore.isValid(client.id)) {
+const add = (req, client, ClientStore) => {
+	if (ClientStore.notValid(client.id)) {
 		client.emit('authenticate', null, {
 			status: 401
 		});
+		return;
 	};
 	const RequestUser = ClientStore.get(client.id);
 
@@ -79,12 +83,12 @@ const add = (req, client) => {
 	}
 }
 
-const get = (req, client) => {
-
-	if (ClientStore.isValid(client.id)) {
+const get = (req, client, ClientStore) => {
+	if (ClientStore.notValid(client.id)) {
 		client.emit('authenticate', null, {
 			status: 401
 		});
+		return;
 	};
 	const RequestUser = ClientStore.get(client.id);
 

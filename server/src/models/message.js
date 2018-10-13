@@ -5,7 +5,7 @@ const logger = require('../utils/logger');
 const loggerDispatcher = 'MessageModel';
 const Schema = mongoose.Schema;
 
-const messaeSchema = new mongoose.Schema({
+const messageSchema = new mongoose.Schema({
   user: {
     type: String
   },
@@ -15,21 +15,12 @@ const messaeSchema = new mongoose.Schema({
   channel: {
     type: String
   },
-  name: {
+  text: {
     type: String,
-  },
-  description: {
-    type: String,
-  },
-  userCount: {
-    type: Number
-  },
-  isPrivate: {
-    type: Boolean
-  },
+  }
 });
 
-messaeSchema.statics.getAll = async function messageGetAll() {
+messageSchema.statics.getAll = async function messageGetAll() {
   let data;
 
   try {
@@ -50,6 +41,6 @@ messaeSchema.statics.getAll = async function messageGetAll() {
   return data;
 };
 
-const Message = mongoose.model('Message', messaeSchema, 'messages');
+const Message = mongoose.model('Message', messageSchema, 'messages');
 
 module.exports = Message;

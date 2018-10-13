@@ -1,22 +1,21 @@
 const User = require('../models/user');
-const ClientStore = require('./client');
 
 
-const authorize = (req, client) => {
+const authorize = (req, client, ClientStore) => {
     try {
         User.findOne({ token: req.token })
         .select('name token username')
         .exec(function (fail, success) {
-            
-            if (fail) {
-                // TODO handle 401
-            }
             
             if (success) {
                 ClientStore.add(client.id, req);
                 client.emit('authenticate', {
                     status: 200
                 }, null);
+            }
+
+            if (fail) {
+                // TODO handle 401
             }
         });
     }catch(e){

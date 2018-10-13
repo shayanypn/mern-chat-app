@@ -10,9 +10,13 @@ class BackSidebar extends React.Component {
 		super(props);
 	}
 	onLogout(){
-		this.props.dispatch({type: USER.LOGOUT});
+		const { user } = this.props;
+		this.props.dispatch(USER.delete(user.token));
 	}
 	onRoomClick(room){
+		if (!room || !room._id) {
+			return;
+		}
 		this.props.dispatch({
 			type: ROOM.ACTIVE,
 			id: room._id
@@ -21,13 +25,17 @@ class BackSidebar extends React.Component {
 			room_id: room._id
 		});
 	}
-	onClickChannel(channel){
+	onClickChannel(room, channel){
+		if (!room || !room._id || !channel || !channel._id) {
+			return;
+		}
 		this.props.dispatch({
 			type: CHANNEL.ACTIVE,
 			id: channel._id
 		});
 		socket.emit('get_channel_message', {
-			channel_id: channel._id
+			room: room._id,
+			channel: channel._id
 		});
 	}
 
@@ -46,7 +54,7 @@ class BackSidebar extends React.Component {
 				</div>
 				<div className="sidebar__chatlist">
 					<div className="row">
-						<div className="col">
+						<div className="col-4 pr-0">
 							<ul className="sidebar__chatlist__list">
 								{room.map((x, index) =>{
 									return (<li className={`sidebar__chatlist__list__li ${x.active ? 'sidebar__chatlist__list__li--active' : ''}`}
@@ -55,11 +63,12 @@ class BackSidebar extends React.Component {
 								})}
 							</ul>
 						</div>
-						<div className="col">
+						<div className="col-8 pl-0">
 							{activeRoom ? (<Link to={`${match.path}channel`}> <button className="btn btn-primary btn-sm"> add channel</button></Link>) : ''}
-							<ul className="nopadding mt-5">
+							<ul className="sidebar__chatlist__list nopadding mt-5">
 								{channel.map((x,index) =>{
-									return (<li onClick={e => this.onClickChannel(x)} key={index}>{x.name}</li>)
+									return (<li className={`sidebar__chatlist__list__li ${x.active ? 'sidebar__chatlist__list__li--active' : ''}`}
+											onClick={e => this.onClickChannel(activeRoom, x)} key={index}>{x.name}</li>)
 								})}
 							</ul>
 						</div>
@@ -72,7 +81,7 @@ class BackSidebar extends React.Component {
 						</li>
 						<li className="nav-item bg-danger"
 							onClick={this.onLogout.bind(this)}>
-							<a href="javascript: void();" className="nav-link">Sign Out</a>
+							<a className="nav-link">Sign Out</a>
 						</li>
 					</ul>
 				</div>

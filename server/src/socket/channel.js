@@ -1,16 +1,14 @@
 const Room = require('../models/room');
 const Channel = require('../models/channel');
-const ClientStore = require('./client');
 
-const add = (req, client) => {
-	if (ClientStore.isValid(client.id)) {
+const add = (req, client, ClientStore) => {
+	if (ClientStore.notValid(client.id)) {
 		client.emit('authenticate', null, {
 			status: 401
 		});
+		return;
 	};
 	const RequestUser = ClientStore.get(client.id);
-
-	console.log(RequestUser);
 
 	try {
 		Channel.find({
@@ -20,10 +18,6 @@ const add = (req, client) => {
 		.select('name')
 		.exec(function (fail, success) {
 	
-			if (fail) {
-				// TODO handle 404
-			}
-			
 			if (success) {
 				
 				if (success.length === 0) {
@@ -44,6 +38,10 @@ const add = (req, client) => {
 					} );
 				}
 			}
+
+			if (fail) {
+				// TODO handle 404
+			}
 		});
 	}catch(e){
 		client.emit('add_room_channel', null , {
@@ -53,15 +51,22 @@ const add = (req, client) => {
 	}
 }
 
-const get = (req, client) => {
+const get = (req, client, ClientStore) => {
 
-	if (ClientStore.isValid(client.id)) {
+	if (ClientStore.notValid(client.id)) {
 		client.emit('authenticate', null, {
 			status: 401
 		});
+		return;
 	};
 	const RequestUser = ClientStore.get(client.id);
 
+	if (!req || !req.room_id) {
+		client.emit('get_room_channel', null, {
+			status: 422
+		});
+		return;
+	}
 
 	try {
 		Channel.find({
@@ -79,6 +84,7 @@ const get = (req, client) => {
 			}
 		});
 	}catch(e){
+		console.log(e);
 		client.emit('get_room_channel', null , {
 			status: 500,
 			message: e

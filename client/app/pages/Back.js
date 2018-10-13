@@ -20,43 +20,6 @@ import BackNavbar from './../components/BackNavbar';
 class Back extends React.Component {
 	constructor(props){
 		super(props);
-		// socket.on('get_chatroom', (error,result) => {
-		// 	if (result) {
-		// 		this.props.dispatch(CHATROOM.update(result));
-		// 	};
-		// });
-		socket.on('authenticate', (result, error) => {
-			if (result) {
-				console.log(result);
-				this.loadDefault();
-			}
-			if (error) {
-				console.log('authenticate problem' , error);
-			}
-		});
-		socket.on('get_room', (result, error) => {
-			if (result) {
-				this.props.dispatch({
-					type: ROOM.UPDATE,
-					rooms: result
-				});
-			};
-		});
-		
-
-		socket.on('get_room_channel', (result, error) => {
-			if (result) {
-				this.props.dispatch({
-					type: CHANNEL.UPDATE,
-					channels: result
-				});
-			};
-		});
-		socket.on('get_room_channel', (result, error) => {
-			if (result) {
-				socket.emit('get_room_channel');
-			}
-		});
 	}
 	componentDidMount(){
 		const { user } = this.props;
@@ -64,10 +27,6 @@ class Back extends React.Component {
 			username: user.username,
 			token: user.token,
 		});
-	}
-
-	loadDefault(){
-		socket.emit('get_room');
 	}
 
 	render(){

@@ -8,17 +8,16 @@ const Message = require('./socket/message');
 const Socket = (client) => {
 	var ClientID = client.id;
 
-	client.on('authenticate', (req) => authorize(req, client) );
-	client.on('search_room', (req) => Room.add(req, client) );
-	client.on('get_room', (req) => Room.get(req, client) );
-	client.on('add_room', (req) => Room.add(req, client) );
+	client.on('authenticate', (req) => authorize(req, client, ClientStore) );
+	client.on('search_room', (req) => Room.add(req, client, ClientStore) );
+	client.on('get_room', (req) => Room.get(req, client, ClientStore) );
+	client.on('add_room', (req) => Room.add(req, client, ClientStore) );
 
-	client.on('get_room_channel', (req) => Channel.get(req, client) );
-	client.on('add_room_channel', (req) => Channel.add(req, client) );
+	client.on('get_room_channel', (req) => Channel.get(req, client, ClientStore) );
+	client.on('add_room_channel', (req) => Channel.add(req, client, ClientStore) );
 
-	client.on('get_channel_message', (req) => Message.get(req, client) );
-
-
+	client.on('get_channel_message', (req) => Message.get(req, client, ClientStore) );
+	client.on('add_channel_message', (req) => Message.add(req, client, ClientStore) );
 
 }
 

@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { subscribe } from 'redux-subscriber';
 
-import { USER } from './actions';
+import { socket } from './socket';
+import { USER, ROOM, CHANNEL, MESSAGE } from './actions';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -19,6 +20,62 @@ class Main extends React.Component {
 		this.state = {
 			isLoading: false
 		};
+		socket.on('authenticate', (result, error) => {
+			if (result) {
+				socket.emit('get_room');
+			}
+
+			if (error) {
+				console.log('authenticate problem' , error);
+			}
+		});
+		socket.on('get_room', (result, error) => {
+			if (result) {
+				this.props.dispatch({
+					type: ROOM.UPDATE,
+					rooms: result
+				});
+			}
+
+			if (error) {
+				console.log('get_room' , error);
+			}
+		});
+		socket.on('get_room_channel', (result, error) => {
+			if (result) {
+				this.props.dispatch({
+					type: CHANNEL.UPDATE,
+					channels: result
+				});
+			}
+
+			if (error) {
+				console.log('get_room_channel' , error);
+			}
+		});
+		socket.on('get_room_channel', (result, error) => {
+			if (result) {
+				// socket.emit('get_room_channel');
+			}
+
+			if (error) {
+				console.log('get_room_channel' , error);
+			}
+		});
+
+		socket.on('get_channel_message', (result, error) => {
+			if (result) {
+				this.props.dispatch({
+					type: MESSAGE.UPDATE,
+					data: result
+				});
+			}
+
+			if (error) {
+				console.log('get_channel_message' , error);
+			}
+		});
+
 	}
 	componentDidMount(){
 		this.props.dispatch({type: USER.CHECKTOKEN});

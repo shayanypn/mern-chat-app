@@ -1,12 +1,11 @@
 const User = require('../models/user');
-const ClientStore = require('./client');
 
-
-const search = (req, client) => {
-	if (ClientStore.isValid(client.id)) {
+const search = (req, client, ClientStore) => {
+	if (ClientStore.notValid(client.id)) {
 		client.emit('authenticate', null, {
 			status: 401
 		});
+		return;
 	};
 
 	try {
@@ -14,12 +13,12 @@ const search = (req, client) => {
 		.select('name username')
 		.exec(function (fail, success) {
 			
-			if (fail) {
-				// TODO handle 401
+			if (success) {
+				client.emit('search_user', success, null);
 			}
 			
-			if (success) {
-				client.emit('search_user', null, success );
+			if (fail) {
+				// TODO handle 401
 			}
 
 			client.emit('search_user', 'NORESULT', null );

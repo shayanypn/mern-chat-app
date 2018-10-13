@@ -125,3 +125,16 @@ export const CHANNEL = {
 	ACTIVE: 'CHANNEL_ACTIVE',
 	DECTIVE: 'CHANNEL_DECTIVE'
 }
+
+/*** * * * * * * * * * * 
+ * 		MESSAGE
+* * * * * * * * * * ***/
+export const MESSAGE = {
+	LIST: 'MESSAGE_LIST',
+	UPDATE: 'MESSAGE_UPDATE',
+	ADDLIST: 'MESSAGE_ADDLIST',
+	ACTIVE: 'MESSAGE_ACTIVE',
+	DECTIVE: 'MESSAGE_DECTIVE'
+}
+
+

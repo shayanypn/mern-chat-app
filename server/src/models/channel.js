@@ -21,6 +21,9 @@ const channelSchema = new mongoose.Schema({
   userCount: {
     type: Number
   },
+  isPrivate: {
+    type: Boolean
+  },
 });
 
 channelSchema.statics.getAll = async function channelGetAll() {

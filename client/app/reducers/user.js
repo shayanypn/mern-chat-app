@@ -47,7 +47,7 @@ function model(state = defaultUserModel, action) {
       });
     case USER.LOGOUT:
       //clear cookie
-      Cookie.set('ca', '',6);      
+      Cookie.set('ca', '', 6);      
       return Object.assign({}, state,{
         username: null,
         password: null,
