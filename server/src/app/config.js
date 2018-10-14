@@ -4,6 +4,8 @@ const DB_PROTOCOL = process.env.DB_PROTOCOL || 'mongodb';
 const DB_HOST = process.env.DB_HOST || 'localhost';
 const DB_PORT = process.env.DB_PORT || '27017';
 const DB_NAME = process.env.DB_NAME || 'mern-chat-app';
+const DB_USERNAME = process.env.DB_USERNAME || null;
+const DB_PASSWORD = process.env.DB_PASSWORD || null;
 
 /* eslint-disable no-trailing-spaces */
 const config = {
@@ -21,7 +23,7 @@ const config = {
   DB_HOST,
   DB_PORT,
   DB_NAME,
-  DB_URL: `${DB_PROTOCOL}://${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  DB_URL: `${DB_PROTOCOL}://${DB_USERNAME ? (DB_USERNAME+':'+DB_PASSWORD+'@') : ''}${DB_HOST}:${DB_PORT}/${DB_NAME}`,
 
   /* REDIS */
   REDIS_HOST: process.env.REDIS_HOST || 'localhost',
