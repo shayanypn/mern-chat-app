@@ -23,7 +23,7 @@ const config = {
   DB_HOST,
   DB_PORT,
   DB_NAME,
-  DB_URL: `${DB_PROTOCOL}://${DB_USERNAME ? (DB_USERNAME+':'+DB_PASSWORD+'@') : ''}${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  DB_URL: `${DB_PROTOCOL}://${DB_USERNAME ? (DB_USERNAME+':'+DB_PASSWORD+'@') : ''}${DB_HOST}:${DB_PORT}/${DB_NAME}?connect=replicaSet`,
 
   /* REDIS */
   REDIS_HOST: process.env.REDIS_HOST || 'localhost',

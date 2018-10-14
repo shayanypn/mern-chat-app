@@ -12,7 +12,6 @@ const loggerDispatcher = 'Index';
 io.on('connection', Socket);
 
 
-
 process.on('unhandledRejection', (err, promise) => {
   // if (err.operational === true)
   logger.warn(err, {
@@ -53,7 +52,7 @@ server.on('error', err => {
 });
 
 io.listen(WS_PORT);
-server.listen(PORT, 'localhost', () => {
+server.listen(PORT , () => {
   logger.info(`Listening on port ${PORT}`, {
     dispadispatcher: loggerDispatcher,
   });
