@@ -4,8 +4,9 @@ node_js:
 cache:
   directories:
   - node_modules
-before_install: cd client
 script:
+  - cd client
+  - npm install
   - npm run build
 deploy:
   provider: pages
