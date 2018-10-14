@@ -8,7 +8,7 @@ const server = http.createServer(app);
 const io = require('socket.io')(http);
 const loggerDispatcher = 'Index';
 
-
+io.set('origins', '*:*');
 io.on('connection', Socket);
 
 

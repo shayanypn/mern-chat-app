@@ -23,7 +23,7 @@ const HTTPHandler = function(error){
 	}
 
 
-	console.log('error', error, action);
+	console.log('error', error);
 
 	return action;
 };
