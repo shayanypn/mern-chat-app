@@ -24,6 +24,9 @@ const messageSchema = new mongoose.Schema({
   },
   image: {
     type: String
+  },
+  date: {
+    type: Number
   }
 });
 

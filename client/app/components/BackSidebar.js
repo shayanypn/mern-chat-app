@@ -27,6 +27,7 @@ class BackSidebar extends React.Component {
 		});
 	}
 	onClickChannel(room, channel){
+		const { location } = this.props;
 		if (!room || !room._id || !channel || !channel._id) {
 			return;
 		}
@@ -38,10 +39,10 @@ class BackSidebar extends React.Component {
 			room: room._id,
 			channel: channel._id
 		});
-		this.props.history.push('/app/');
+		if (location.pathname !== '/app/') {
+			this.props.history.push('/app/');
+		}
 	}
-
-
 	render(){
 		const { match, room, channel } = this.props;
 		const activeRoom = room.find(x => x.active);

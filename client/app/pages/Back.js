@@ -34,10 +34,10 @@ class Back extends React.Component {
 					<main role="main" className="nopadding">
 						<BackNavbar />
 						<div className="col">
-							<Route exact path={`${match.path}/`} component={Dashboard} />
-							<Route path={`${match.path}/room`} component={Room} />
-							<Route path={`${match.path}/channel`} component={Channel} />
-							<Route path={`${match.path}/setting`} component={Setting} />
+							<Route exact path={`${match.path}/`} replace component={Dashboard} />
+							<Route path={`${match.path}/room`} replace component={Room} />
+							<Route path={`${match.path}/channel`} replace component={Channel} />
+							<Route path={`${match.path}/setting`} replace component={Setting} />
 						</div>
 					</main>
 				</div>

@@ -27,6 +27,7 @@ class ChatForm extends React.Component {
 			room: activeRoom._id,
 			channel: activeChannel._id,
 			text: this.message.value,
+			date: (new Date()).getTime()
 		};
 		if (message.room && message.channel && message.text.length) {
 			socket.emit('add_channel_message', message);

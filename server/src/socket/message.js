@@ -75,6 +75,7 @@ const add = (req, client, ClientStore) => {
 						room: req.room,
 						channel: req.channel,
 						text: req.text,
+						date: req.date,
 					}, function (fail, result) {
 						client.emit('add_channel_message', {
 							status: 201
