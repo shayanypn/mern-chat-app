@@ -6,7 +6,8 @@ const defaultUserModel = {
   isAuthenticate: false,
   username: null,
   password: null,
-  token: null
+  token: null,
+  avatar: 'https://dummyimage.com/200x200/4d394b/fff'
 };
 
 
@@ -47,12 +48,16 @@ function model(state = defaultUserModel, action) {
       });
     case USER.LOGOUT:
       //clear cookie
-      Cookie.set('ca', '', 6);      
+      Cookie.set('ca', '', 6);
       return Object.assign({}, state,{
         username: null,
         password: null,
         token: null,
         isAuthenticate: false
+      });
+    case USER.AVATAR:
+      return Object.assign({}, state, {
+        avatar: action.avatar
       });
     default:
       return state

@@ -36,7 +36,28 @@ const updateOne  = async (req) => {
 	return validation.messages.length === 0 ? true : validation;
 };
 
+const updateAvatar = async (req) => {
+	const validation = {
+		status: 422,
+		messages: []
+	};
+	const { body } = req;
+	const validate = await Authorization.check(req);
+	
+	if (validate !== true) {
+		return validate;
+	}
+
+
+	if (!helpers.hasValue(body.avatar)) {
+		validation.messages.push('Avatar could not be empty');
+	}
+
+	return validation.messages.length === 0 ? true : validation;
+};
+
 module.exports = {
 	getById,
-	updateOne
+	updateOne,
+	updateAvatar
 };

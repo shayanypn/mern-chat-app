@@ -10,5 +10,6 @@ router.get('/', asyncErrorDecorator(controller.getOne));
 
 router.put('/', jsonParser, asyncErrorDecorator(controller.updateOne));
 
+router.put('/avatar', jsonParser, asyncErrorDecorator(controller.updateAvatar));
 
 module.exports = router;

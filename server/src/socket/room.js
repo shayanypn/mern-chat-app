@@ -14,7 +14,7 @@ const search = (req, client, ClientStore) => {
 
 	try {
 		Room.find({ name: new RegExp(req.name, 'i') })
-		.select('name description user_count')
+		.select('_id name description avatar user_count')
 		.exec(function (fail, success) {
 			
 			if (success) {
@@ -62,8 +62,8 @@ const add = (req, client, ClientStore) => {
 						_id: new mongoose.Types.ObjectId(),
 						user: RequestUser._id,
 						name: req.name,
-						description: req.name,
-						// users: [],
+						description: req.description,
+						avatar: req.avatar,
 						user_count: 1,
 					}, function (fail, success) {
 						client.emit('add_room', {
@@ -94,10 +94,9 @@ const get = (req, client, ClientStore) => {
 	};
 	const RequestUser = ClientStore.get(client.id);
 
-
 	try {
 		Room.find({})
-		.select('_id name description')
+		.select('_id name description avatar user_count')
 		.exec(function (fail, success) {
 
 			if (fail) {

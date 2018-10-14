@@ -27,7 +27,7 @@ const get = (req, client, ClientStore) => {
 			room: req.room,
 			channel: req.channel
 		})
-		.populate('author', 'name')
+		.populate('author', 'name avatar')
 		.exec(function (fail, success) {
 			if (success) {
 				client.emit('get_channel_message', success, null );

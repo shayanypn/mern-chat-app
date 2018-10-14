@@ -5,14 +5,14 @@ import { withRouter } from 'react-router';
 
 class Card extends React.Component {
 	render(){
-		const { title, parentClass, children} = this.props;
+		const { title, parentClass, cardClass, children} = this.props;
 		return (
 			<div className={parentClass ? parentClass : ''}>
-				<div className="card">
+				<div className={`card ${cardClass || ''}`}>
 					{title ? (<div className="card-header text-center">
 						<h2>{title}</h2>
 					</div>) : ''}
-					<div className="card-body">
+					<div className="card-body p-2">
 						{children}
 					</div>
 				</div>

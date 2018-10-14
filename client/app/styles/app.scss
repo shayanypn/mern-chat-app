@@ -199,11 +199,14 @@ main {
             display: flex;
             margin-bottom: 10px;
             .message__list__item__avatar{
-                background: url('../images/avatar.png') no-repeat scroll center center / cover;
-                height: 32px;
-                width: 32px;
+                height: 40px;
+                width: 40px;
                 border: 1px solid $COLOR_LIGHT_40;
                 border-radius: 50%;
+                img {
+                    height: 40px;
+                    width: 40px;
+                }
             }
             .message__list__item__text {
                 width: calc(100% - 34px);
@@ -244,5 +247,34 @@ main {
                 fill: $COLOR_LIGHT_40;
             }
         }
+    }
+}
+
+
+
+.input-group-file {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    input {
+        opacity: 0;
+    }
+    &:before {
+        position: absolute;
+        content: ' click to select avatar ';
+        width: 100%;
+        left: 0px;
+        text-align: center;
+        font-weight: bold;
+        color: #999;
     }
 }

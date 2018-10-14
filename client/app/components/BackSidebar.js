@@ -46,7 +46,6 @@ class BackSidebar extends React.Component {
 		const { match, room, channel } = this.props;
 		const activeRoom = room.find(x => x.active);
 
-
 		return (
 			<nav className="col-4 bg-light sidebar">
 				<div className="sidebar__room">
@@ -54,7 +53,7 @@ class BackSidebar extends React.Component {
 						{room.map((x, index) =>{
 							return (<li className={`sidebar__room__list__li ${x.active ? 'sidebar__room__list__li--active' : ''}`}
 								onClick={e=> this.onRoomClick(x)}
-								key={index}><Ionicon icon="md-radio-button-off" fontSize="40px" /></li>);
+								key={index}><img src={x.avatar} style={{width:40, height:40}} className="rounded-circle" /></li>);
 						})}
 						<li className="sidebar__room__list__li mt-3" >
 							<Link to={`${match.path}/room`}>

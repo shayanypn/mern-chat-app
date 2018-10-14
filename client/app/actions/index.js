@@ -53,6 +53,7 @@ export const USER = {
 	LOGIN: 'LOGIN',
 	CHECKTOKEN: 'CHECKTOKEN',
 	LOGOUT: 'LOGOUT',
+	AVATAR: 'USER_AVATAR',
 	post: (data) => {
 		return (dispatch) => {
 			return axios.post(`${SERVER}/token`,{
@@ -101,7 +102,28 @@ export const USER = {
 		return {
 			type: USER.LOGOUT
 		};
-	}
+	},
+	updateAvatar: (data) => {
+		return (dispatch) => {
+			return axios.put(`${SERVER}/user/avatar`,{
+				avatar: data.avatar
+			},{
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': data.token
+				}
+			})
+			.then(function (response) {
+				dispatch(LOADING.apply('form_login', false,{
+					type: USER.LOGIN,
+					avatar: data.avatar
+				}));
+			})
+			.catch( error => {
+				dispatch(LOADING.apply('form_login', false), HTTPHandler(error));
+			});
+		}
+	},
 }
 
 /*** * * * * * * * * * * 

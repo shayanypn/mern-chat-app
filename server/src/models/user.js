@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
   },
   expireAt: {
     type: Date
+  },
+  avatar: {
+    type: String
   }
 });
 

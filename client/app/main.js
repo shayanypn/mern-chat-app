@@ -61,7 +61,7 @@ class Main extends React.Component {
 		});
 		socket.on('add_room_channel', (result, error) => {
 			if (result) {
-				socket.emit('add_room_channel');
+				this.loadRoomChannel();
 			}
 			if (error) {
 				console.log('add_room_channel' , error);
@@ -81,6 +81,15 @@ class Main extends React.Component {
 			}
 		});
 
+	}
+	loadRoomChannel(){
+		const { room } = this.props;
+		const activeRoom = room.find(x => x.active);
+		if (activeRoom) {
+			socket.emit('get_room_channel', {
+				room_id: activeRoom._id
+			});
+		}
 	}
 	componentDidMount(){
 		this.props.dispatch({type: USER.CHECKTOKEN});

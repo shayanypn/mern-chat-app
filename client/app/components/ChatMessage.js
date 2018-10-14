@@ -13,7 +13,9 @@ class ChatMessage extends React.Component {
 			<div className="row">
 				<div className="col">
 					<div className="message__list__item">
-						<div className="message__list__item__avatar"></div>
+						<div className="message__list__item__avatar">
+							<img className="rounded-circle" src={_message.author ? _message.author.avatar : ''} />
+						</div>
 						<div className="message__list__item__text">
 							<div className="message__list__item__text__auther">
 								{_message.author ? _message.author.name : ''} <span>12:41 PM</span>

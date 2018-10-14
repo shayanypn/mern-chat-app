@@ -10,7 +10,7 @@ const search = (req, client, ClientStore) => {
 
 	try {
 		User.find({ username: new RegExp(req.username, 'i') })
-		.select('name username')
+		.select('name username avatar')
 		.exec(function (fail, success) {
 			
 			if (success) {

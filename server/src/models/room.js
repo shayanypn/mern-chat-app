@@ -20,6 +20,9 @@ const roomSchema = new mongoose.Schema({
   user_count: {
     type: Number
   },
+  avatar: {
+    type: String
+  }
 });
 
 roomSchema.statics.getAll = async function roomGetAll() {
