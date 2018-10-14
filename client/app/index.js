@@ -9,7 +9,7 @@ import createHistory from 'history/createBrowserHistory';
 import configureStore from './store/configureStore';
 import { createHashHistory } from 'history';
 
-import Main from './Main';
+import Main from './main';
 
 // create history
 const history = createHashHistory({
