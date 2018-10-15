@@ -21,6 +21,9 @@ class ChatMessage extends React.Component {
 								{_message.author ? _message.author.name : ''}
 								{_message.date ? <span className="pl-2"><Moment fromNow>{_message.date}</Moment></span> : ''}
 							</div>
+							<div className="message__list__item__text__image">
+								<img src={_message.image} />
+							</div>
 							{_message.text}
 						</div>
 					</div>
