@@ -49,14 +49,12 @@ const create = async (req, res) => {
             }
     });
     const user = await User.findOne({ username: body.username })
-        .select('name token')
+        .select('name username token avatar')
         .exec(function (err, result) {
             return result;
         });
 
-    res.status(201).send({
-        token: user.token
-    });
+    res.status(201).send(user);
 };
 
 const deleteByToken = async (req, res) => {

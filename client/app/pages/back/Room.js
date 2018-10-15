@@ -77,7 +77,8 @@ class Room extends React.Component {
 							</form>
 						</div>
 						<div className="col-4 text-center">
-							<img src={this.state.avatar} className="rounded-circle" style={{width:170,height:170}} />
+							<img src={this.state.avatar}  className="w-100 rounded-circle"
+									style={{maxWidth:170,maxHeight:170}} />
 						</div>
 					</div>
 				</Card>

@@ -11,11 +11,87 @@ $COLOR_LIGHT_40: #dedede;
     padding-right: 0px;
     padding-left: 0px;
 }
+.navbar-toggler{
+    position: relative;
+    right: -15px;
+}
 
+.bx-loading{
+	background: rgba(255,255,255,0.7);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+}
+
+
+
+/*-----------------------
+    Component
+----------------------- */
+.message {
+    .message__list {
+        overflow-y: scroll;
+        height: calc(100vh - 150px);
+        max-height: calc(100vh - 150px);
+        .message__list__item {        
+            position: relative;
+            width: 100%;
+            display: flex;
+            margin-bottom: 10px;
+            .message__list__item__avatar{
+                height: 40px;
+                width: 40px;
+                border: 1px solid $COLOR_LIGHT_40;
+                border-radius: 50%;
+                img {
+                    height: 40px;
+                    width: 40px;
+                }
+            }
+            .message__list__item__text {
+                width: calc(100% - 34px);
+                padding: 0 8px;
+                .message__list__item__text__auther {
+                    font-weight: bold;
+                    span {
+                        font-size: 11px;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+    .message__form {
+        border: 2px solid $COLOR_LIGHT_40;
+        border-radius: 4px;
+        height: 48px;
+        margin: 5px;
+        textarea {
+            overflow: auto;
+            resize: none;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-left: 2px solid $COLOR_LIGHT_40;
+            padding: 5px 15px;
+            outline: none !important;
+        }
+        button {
+            background: transparent;
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 4px;
+            cursor: pointer;
+            path {
+                fill: $COLOR_LIGHT_40;
+            }
+        }
+    }
+}
 .sidebar {
     height: 100vh;
-    width: 250px;
-    max-width: 250px;
     border-right: 1px solid #dedede;
     padding: 0px;
     position: relative;
@@ -86,7 +162,15 @@ $COLOR_LIGHT_40: #dedede;
         height: 100vh;
         position: absolute;
         right: 0px;
-        padding-right: 10px;
+        .sidebar__channel__toggle {
+            background: $COLOR_DARK;
+            cursor: pointer;
+            padding: 5px;
+            color: $COLOR_LIGHT;
+            path {
+                fill: $COLOR_LIGHT;
+            }
+        }
         .sidebar__channel__title {
             width: 100%;
             border-bottom: 1px solid $COLOR_DARK;
@@ -110,7 +194,7 @@ $COLOR_LIGHT_40: #dedede;
         }
         .sidebar__channel__list {
             list-style: none;
-            padding: 0px;
+            padding: 0 10px 0 0;
             margin: 0 0 15px 0;
             width: 100%;
             .sidebar__channel__list__li {
@@ -132,19 +216,65 @@ $COLOR_LIGHT_40: #dedede;
     }
 }
 
-main {
-    width: calc( 100% - 250px ) !important;
-    max-width: calc( 100% - 250px ) !important;
+@media only screen and (max-width: 575px) {
+    .sidebar {
+        width: 250px !important;
+        max-width: 250px !important;
+        position: absolute;
+        z-index: 999;
+        left: -260px;
+        &.active {
+            left: 0px;
+        }
+    }
 }
 
-.bx-loading{
-	background: rgba(255,255,255,0.7);
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	z-index: 99999;
+
+/*-----------------------
+    Form
+----------------------- */
+.input-group-file {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    input {
+        opacity: 0;
+    }
+    &:before {
+        position: absolute;
+        content: ' click to select avatar ';
+        width: 100%;
+        left: 0px;
+        text-align: center;
+        font-weight: bold;
+        color: #999;
+    }
 }
 
+
+/*-----------------------
+    Button
+----------------------- */
+.btn {
+    &.btn--sidebar {
+        border: none;
+        background: transparent;
+    }
+}
+
+
+/*-----------------------
+    Helpers
+----------------------- */
 .spinner {
     margin: 20% auto 0;
     width: 100px;
@@ -188,93 +318,6 @@ main {
 
 
 
-.message {
-    .message__list {
-        overflow-y: scroll;
-        height: calc(100vh - 150px);
-        max-height: calc(100vh - 150px);
-        .message__list__item {        
-            position: relative;
-            width: 100%;
-            display: flex;
-            margin-bottom: 10px;
-            .message__list__item__avatar{
-                height: 40px;
-                width: 40px;
-                border: 1px solid $COLOR_LIGHT_40;
-                border-radius: 50%;
-                img {
-                    height: 40px;
-                    width: 40px;
-                }
-            }
-            .message__list__item__text {
-                width: calc(100% - 34px);
-                padding: 0 8px;
-                .message__list__item__text__auther {
-                    font-weight: bold;
-                    span {
-                        font-size: 11px;
-                        font-weight: normal;
-                    }
-                }
-            }
-        }
-    }
-    .message__form {
-        border: 2px solid $COLOR_LIGHT_40;
-        border-radius: 4px;
-        height: 48px;
-        margin: 5px;
-        textarea {
-            overflow: auto;
-            resize: none;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-left: 2px solid $COLOR_LIGHT_40;
-            padding: 5px 15px;
-            outline: none !important;
-        }
-        button {
-            background: transparent;
-            width: 100%;
-            height: 100%;
-            border: none;
-            padding: 4px;
-            cursor: pointer;
-            path {
-                fill: $COLOR_LIGHT_40;
-            }
-        }
-    }
-}
 
 
 
-.input-group-file {
-    display: block;
-    width: 100%;
-    height: calc(2.25rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    input {
-        opacity: 0;
-    }
-    &:before {
-        position: absolute;
-        content: ' click to select avatar ';
-        width: 100%;
-        left: 0px;
-        text-align: center;
-        font-weight: bold;
-        color: #999;
-    }
-}

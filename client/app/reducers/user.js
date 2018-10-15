@@ -42,6 +42,8 @@ function model(state = defaultUserModel, action) {
       }), 6 );
 
       return Object.assign({}, state,{
+        avatar: action.token.avatar,
+        name: action.token.name,
         username: action.token.username,
         token: action.token.token,
         isAuthenticate: true

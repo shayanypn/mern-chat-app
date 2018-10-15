@@ -12,7 +12,7 @@ const getOne = async (req, res) => {
     }
 
     const user = await User.findOne({ token: headers.authorization })
-        .select('_id name username')
+        .select('_id name username avatar')
         .exec(function (err, result) {
             return result;
         });

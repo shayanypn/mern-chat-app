@@ -11,7 +11,9 @@ class Setting extends React.Component {
 		super(props);
 		this.state = {
 			timer: null,
-			avatar: 'https://dummyimage.com/200x200/4d394b/fff'
+			avatar: (props.user && props.user.avatar) 
+					? props.user.avatar 
+					: 'https://dummyimage.com/200x200/4d394b/fff'
 		};
 	}
 	onAvatarChange(image){
@@ -34,7 +36,7 @@ class Setting extends React.Component {
 			<div className="row justify-content-md-center">
 				<Card parentClass="col-12 mt-3" cardClass="p1 bg-light">
 					<div className="row">
-						<div className="col-8">
+						<div className="col-7">
 							<form onSubmit={e => e.preventDefault() } >
 								<div className="form-group">
 									<label>Avatar</label>
@@ -49,8 +51,9 @@ class Setting extends React.Component {
 								</div>
 							</form>
 						</div>
-						<div className="col-4 text-center">
-							<img src={this.state.avatar} className="rounded-circle" style={{width:170,height:170}} />
+						<div className="col-5 text-center">
+							<img src={this.state.avatar} className="w-100 rounded-circle"
+									style={{maxWidth:170,maxHeight:170}} />
 						</div>
 					</div>
 				</Card>

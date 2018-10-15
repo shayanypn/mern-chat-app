@@ -3,7 +3,7 @@ import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Ionicon from 'react-ionicons'
-import { USER, ROOM, CHANNEL } from '../actions';
+import { SIDEBAR, USER, ROOM, CHANNEL } from '../actions';
 import { socket } from './../socket';
 
 class BackSidebar extends React.Component {
@@ -43,12 +43,19 @@ class BackSidebar extends React.Component {
 			this.props.history.push('/app/');
 		}
 	}
+	onToggleSidebar(){
+		const { webapp } = this.props;
+		this.props.dispatch({
+			type: SIDEBAR,
+			status: !webapp.sidebar
+		});
+	}
 	render(){
-		const { match, room, channel } = this.props;
+		const { match, room, channel, webapp } = this.props;
 		const activeRoom = room.find(x => x.active);
-
+		
 		return (
-			<nav className="col-4 bg-light sidebar">
+			<nav className={`col-4 col-sm-5 col-md-4 col-lg-3 bg-light sidebar ${webapp.sidebar ? 'active' : ''}`}>
 				<div className="sidebar__room">
 					<ul className="sidebar__room__list">
 						{room.map((x, index) =>{
@@ -62,7 +69,6 @@ class BackSidebar extends React.Component {
 							</Link>
 						</li>
 					</ul>
-
 					<ul className="sidebar__room__actionbar">
 						<li>
 							<Link to={`${match.path}/setting`} className="nav-link" >
@@ -75,6 +81,10 @@ class BackSidebar extends React.Component {
 					</ul>
 				</div>
 				<div className="sidebar__channel">
+					<div className="sidebar__channel__toggle d-block d-sm-none d-lg-none"
+						onClick={this.onToggleSidebar.bind(this)}>
+						<Ionicon icon="ios-arrow-dropleft-circle" fontSize="30px"  /> Close Sidebar
+					</div>
 					<div className="sidebar__channel__title">
 						<h4>{activeRoom ? activeRoom.name : ''}</h4>
 					</div>

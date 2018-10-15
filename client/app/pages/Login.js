@@ -22,8 +22,8 @@ class Login extends React.Component {
 			<div>
 				<TopNavbar />
 				<div className="container">
-					<div className="row justify-content-md-center">
-						<Card title="Sign In" parentClass="col-5">
+					<div className="row justify-content-center">
+						<Card title="Sign In" parentClass="col-12 col-sm-8 col-md-5 mb-5" cardClass="bg-light">
 							<form onSubmit={e => e.preventDefault() } >
 								<div className="form-group">
 									<label>Email address</label>

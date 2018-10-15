@@ -102,7 +102,7 @@ class Main extends React.Component {
 	render() {
 		const { user, loading, observer } = this.props;
 		const unsubscribe = observer(
-			state => ({ loading: state.loading.isloading }),
+			state => ({ webapp: state.webapp.isloading }),
 			(state, oldState) => {
 				this.loading(state);
 			},

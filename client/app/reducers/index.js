@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import loading from './loading';
 import user from './user';
 import room from './room';
 import channel from './channel';
 import message from './message';
+import webapp from './webapp';
 
 const rootReducer = combineReducers({
-	loading,
+	webapp,
 	user,
 	room,
 	channel,

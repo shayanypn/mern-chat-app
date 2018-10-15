@@ -26,9 +26,10 @@ import './styles/app.scss';
 import './../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 const store = configureStore({
-	loading: {
-		isloading: false
-	}
+    webapp: {
+        sidebar: false,
+        isloading: false
+    }
 });
 
 
