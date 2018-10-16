@@ -16,7 +16,6 @@ const config = {
 
   /* SERVER */
   PORT: parseInt(process.env.PORT, 10) || 3000,
-  WS_PORT: parseInt(process.env.WS_PORT, 10) || 3100,
 
   /* DB */
   DB_PROTOCOL,

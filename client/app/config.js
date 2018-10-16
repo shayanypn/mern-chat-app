@@ -1,6 +1,5 @@
 
-export const SERVER = 'http://localhost:3000';
-export const WS = 'http://localhost:3100';
+const dev = location.hostname === 'localhost';
 
-// export const SERVER = 'https://shayanypn-mern-chatapp.herokuapp.com';
-// export const WS = 'ws://shayanypn-mern-chatapp.herokuapp.com:3100';
+export const SERVER = dev ? 'http://localhost:3000' : 'https://shayanypn-mern-chatapp.herokuapp.com';
+export const WS = dev ? 'ws://localhost:3000' : 'ws://shayanypn-mern-chatapp.herokuapp.com';

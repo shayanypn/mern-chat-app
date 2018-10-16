@@ -1,4 +1,4 @@
-const { PORT, WS_PORT } = require('./app/config');
+const { PORT } = require('./app/config');
 const http = require('http');
 const logger = require('./utils/logger');
 const app = require('./app/app');
@@ -50,9 +50,9 @@ server.on('error', err => {
   }
 });
 
-io.listen(WS_PORT);
 server.listen(PORT , () => {
   logger.info(`Listening on port ${PORT}`, {
     dispadispatcher: loggerDispatcher,
   });
 });
+io.listen(server);
