@@ -3,11 +3,11 @@ import { USER } from '../actions';
 
 
 const defaultUserModel = {
-  isAuthenticate: false,
-  username: null,
-  password: null,
-  token: null,
-  avatar: 'https://dummyimage.com/200x200/4d394b/fff'
+    isAuthenticate: false,
+    username: null,
+    password: null,
+    token: null,
+    avatar: 'https://dummyimage.com/200x200/4d394b/fff'
 };
 
 
@@ -32,7 +32,6 @@ function model(state = defaultUserModel, action) {
             isAuthenticate: true
           });
       }
-
 
       return state;
     case USER.LOGIN:

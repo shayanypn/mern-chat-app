@@ -3,7 +3,7 @@ import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { socket } from './../socket';
-import { CHATROOM, ROOM, CHANNEL } from './../actions';
+import { DEFAULT, CHATROOM, ROOM, CHANNEL } from './../actions';
 
 import Setting from './back/Setting';
 import Dashboard from './back/Dashboard';
@@ -22,6 +22,7 @@ class Back extends React.Component {
 			username: user.username,
 			token: user.token,
 		});
+		this.props.dispatch({type: DEFAULT});
 	}
 
 	render(){

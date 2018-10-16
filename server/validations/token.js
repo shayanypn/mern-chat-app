@@ -19,12 +19,15 @@ const create = async (req) => {
 		validation.messages.push('Username should be valid email address');
 	}
 	if (validation.messages.length === 0) {
-		const olduser = await User.findOne({ username: body.username, password: body.password })
+		const userObj = await User.findOne({
+			username: body.username,
+			password: body.password
+		})
 		.select('name')
 		.exec(function (err, result) {
 			return result;
 		});
-		if (olduser === null) {
+		if (userObj === null) {
 			validation.status = 401;
 			validation.messages.push('Username or Password is not valid!');
 		};

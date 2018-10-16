@@ -42,7 +42,6 @@ const create = async (req, res) => {
     await User.findOneAndUpdate(
         {username: body.username},
         {$set:{token: rand()+rand()}},
-        {new: true},
         function(err, result){
             if(err){
                 //  TODO
@@ -59,25 +58,28 @@ const create = async (req, res) => {
 
 const deleteByToken = async (req, res) => {
     const { params } = req;
-    const validate = await Validation.getByToken(req);
+    const validate = await Validation.deleteByToken(req);
 
     if (validate !== true) {
         return res.status(validate.status).send(validate);
     }
 
-    const user = await User.findOne({ token: params.token })
-        .select('_id name token')
+
+    const userObj = await User.findOne({
+            token: params.token
+        })
+        .select('_id')
         .exec(function (err, result) {
             return result;
         });
 
-    if (user === null ) {
+    if (userObj === null ) {
         res.status(404).send({
             message: 'token not found'
         });
     } else {
         await User.findOneAndUpdate(
-            {_id: user._id},
+            {_id: userObj._id},
             {$set:{token: ''}},
             function(err, result){
                 if(err){

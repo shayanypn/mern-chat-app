@@ -27,8 +27,9 @@ const HTTPHandler = function(error){
 
 	return action;
 };
-export const SIDEBAR = 'SIDEBAR';
 
+export const DEFAULT = 'DEFAULT';
+export const SIDEBAR = 'SIDEBAR';
 
 export const LOADING = {
 	LOADING: 'LOADING',

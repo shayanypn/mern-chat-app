@@ -129,7 +129,7 @@ $COLOR_LIGHT_40: #dedede;
         .message__form__text {
             border-top: 2px solid $COLOR_LIGHT_40;
             border-bottom: 2px solid $COLOR_LIGHT_40;
-            width: calc( 100% - 150px );
+            width: calc(100% - 100px);
             display: flex;
             img {
                 width: 40px;
@@ -142,7 +142,7 @@ $COLOR_LIGHT_40: #dedede;
                 width: 100%;
                 height: 100%;
                 border: none;
-                padding: 5px 15px;
+                padding: 0 15px;
                 outline: none !important;
             }
             &.message__form__text--image {
@@ -265,11 +265,18 @@ $COLOR_LIGHT_40: #dedede;
             }
         }
         .sidebar__channel__add{
+            text-align: left;
+            padding: 5px 10px;
             a {
-                font-size: 9px;
+                font-size: 20px;
                 color: $COLOR_LIGHT;
+                font-weight: lighter;
+                text-decoration: none;
                 path {
                     fill: $COLOR_LIGHT;
+                }
+                svg {
+                    float: right;
                 }
             }
         }
@@ -280,8 +287,8 @@ $COLOR_LIGHT_40: #dedede;
             width: 100%;
             .sidebar__channel__list__li {
                 width: 100%;
-                font-size: 12px;
-                padding: 5px 5px 5px 10px;
+                font-size: 10px;
+                padding: 5px 5px 5px 15px;
                 cursor: pointer;
                 position: relative;
                 color: $COLOR_LIGHT;

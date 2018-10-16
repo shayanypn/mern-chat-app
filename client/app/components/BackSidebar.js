@@ -33,7 +33,8 @@ class BackSidebar extends React.Component {
 		}
 		this.props.dispatch({
 			type: CHANNEL.ACTIVE,
-			id: channel._id
+			room_id: room._id,
+			channel_id: channel._id
 		});
 		socket.emit('get_channel_message', {
 			room: room._id,
@@ -88,8 +89,8 @@ class BackSidebar extends React.Component {
 					<div className="sidebar__channel__title">
 						<h4>{activeRoom ? activeRoom.name : ''}</h4>
 					</div>
-					<div className="sidebar__channel__add text-right">
-						{activeRoom ? (<Link to={`${match.path}/channel`}>add new channel<Ionicon icon="md-add-circle" /></Link>) : ''}
+					<div className="sidebar__channel__add">
+						{activeRoom ? (<Link to={`${match.path}/channel`}>Channels <Ionicon icon="md-add-circle" /></Link>) : ''}
 					</div>
 					<ul className="sidebar__channel__list nopadding">
 						{channel.map((x,index) =>{
