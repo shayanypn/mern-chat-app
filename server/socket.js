@@ -19,6 +19,9 @@ const Socket = (client) => {
 	client.on('get_channel_message', (req) => Message.get(req, client, ClientStore) );
 	client.on('add_channel_message', (req) => Message.add(req, client, ClientStore) );
 
+	client.on('update_message', (req) => Message.update(req, client, ClientStore) );
+	client.on('delete_message', (req) => Message.deleteById(req, client, ClientStore) );
+
 }
 
 module.exports = Socket;

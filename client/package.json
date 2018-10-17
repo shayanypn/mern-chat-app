@@ -40,7 +40,6 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
-    "react-toastr": "^3.0.0",
     "redux": "^3.7.2",
     "redux-multi": "^0.1.12",
     "redux-subscriber": "^1.1.0",
@@ -48,6 +47,7 @@
     "sass-loader": "^6.0.6",
     "socket.io-client": "^2.1.1",
     "style-loader": "^0.18.2",
+    "sweetalert2": "^7.28.5",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
   },

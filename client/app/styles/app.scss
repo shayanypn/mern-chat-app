@@ -52,6 +52,23 @@ $COLOR_LIGHT_40: #dedede;
             .message__list__item__text {
                 width: calc(100% - 34px);
                 padding: 0 8px;
+                p {
+                    display: block;
+                }
+                .message__list__item__text__action{
+                    height: 24px;
+                    .btn-group {
+                        display: none;
+                        float: right;
+                        button {
+                            font-size: 10px;
+                            padding: 1px 5px;
+                            path {
+                                fill: $COLOR_NORMAL;
+                            }
+                        }
+                    }
+                }
                 .message__list__item__text__auther {
                     font-weight: bold;
                     span {
@@ -65,6 +82,24 @@ $COLOR_LIGHT_40: #dedede;
                         background: $COLOR_LIGHT;
                         max-width: 100%;
                         border-radius: 4px;
+                    }
+                }
+                .message__list__item__text__form{
+                    .form-group{
+                        margin-bottom:5px;
+                    }
+                    textarea {
+                        height: 40px;
+                    }
+                    button{
+                        font-size: 11px;
+                    }
+                }
+            }
+            &:hover {
+                .message__list__item__text__action {
+                    .btn-group {
+                        display: block;
                     }
                 }
             }
