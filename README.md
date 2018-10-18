@@ -45,10 +45,10 @@ Quick Start
 ```shell
 $ git clone https://github.com/ariel-zplinux/simple-chat.git
 $ cd simplechat
-$ // for server
+// for server
 $ npm install
 $ npm start
-$ // for client
+// for client
 $ cd client
 $ npm install
 $ npm start

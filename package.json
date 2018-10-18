@@ -1,10 +1,18 @@
 {
   "name": "mern-chat-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple chat with MERN stack using Express,Mongoose,React,Redux,React Router,Axios,Webpack",
   "main": "server/index.js",
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Express",
+    "Mongoose",
+    "React",
+    "Redux",
+    "React Router",
+    "Axios",
+    "Webpack"
+  ],
+  "author": "Shayan Yazdanpanah <shayanypn@gmail.com>",
   "license": "ISC",
   "engines": {
     "node": ">=8.9.2",
