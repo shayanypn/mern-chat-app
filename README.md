@@ -1,14 +1,15 @@
 
 # Simple chat with MERN stack
 
-A basic chat application just like Slack that allows:
+Using Mongo Express React, Nodejs, Redux and Socket.io.
+You can check **[DEMO](https://shayanypn.github.io/mern-chat-app/)**
 
+![enter image description here](https://github.com/shayanypn/mern-chat-app/blob/master/video.gif)
+
+A basic chat application just like Slack that allows:
 - to send and read messages
 - to send image
 - add Room and Channel
-
-Using Mongo Express React, Nodejs, Redux and Socket.io.
-You can check **[DEMO](https://shayanypn.github.io/mern-chat-app/)**
 
 > The demo run on GH Pages, Heroku, Mlab as database and deploy by using
 > Travis;
