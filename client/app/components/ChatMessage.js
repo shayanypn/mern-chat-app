@@ -18,6 +18,7 @@ class ChatMessage extends React.Component {
 		socket.on('update_message', (result, error) => {
 			if (result) {
 				if (props._message._id === result.id) {
+					toastr.error('message updated successfully');
 					this.setState({
 						editing: false,
 						text: this.message_text.value
@@ -29,6 +30,7 @@ class ChatMessage extends React.Component {
 		socket.on('delete_message', (result, error) => {
 			if (result) {
 				if (props._message._id === result.id) {
+					toastr.error('message deleted successfully');
 					this.setState({
 						deleted: true
 					});

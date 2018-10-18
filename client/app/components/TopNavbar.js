@@ -27,13 +27,13 @@ class TopNavbar extends React.Component {
 								<div className="collapse navbar-collapse" id="navbarsExample03">
 									<ul className="navbar-nav mr-auto">
 										<li className="nav-item">
-											<Link to={`/`} className="nav-link">Home</Link>
+											<Link to={`/`} replace className="nav-link">Home</Link>
 										</li>
 										<li className="nav-item">
-											<Link to={`/about-us`} className="nav-link">About Us</Link>
+											<Link to={`/about-us`} replace className="nav-link">About Us</Link>
 										</li>
 										<li className="nav-item">
-											<Link to={`/blog`} className="nav-link">Blog</Link>
+											<Link to={`/blog`} replace className="nav-link">Blog</Link>
 										</li>
 									</ul>
 								</div>
@@ -41,8 +41,8 @@ class TopNavbar extends React.Component {
 							<div className="col-sm-4 col-md-3 p-0 text-center">
 								<div className="d-none d-sm-block d-md-block ">
 									{user.isAuthenticate ? <Link to={`/app`}><button className="btn btn-info">Dashboard</button></Link> : '' }
-									{user.isAuthenticate ? '' : <Link to={`/signin`}><button className="btn btn-outline-success mr-2">Sign In</button></Link>}
-									{user.isAuthenticate ? '' :<Link to={`/signup`}><button className="btn btn-outline-primary">Sign up</button></Link>}
+									{user.isAuthenticate ? '' : <Link to={`/signin`} replace><button className="btn btn-outline-success mr-2">Sign In</button></Link>}
+									{user.isAuthenticate ? '' :<Link to={`/signup`} replace><button className="btn btn-outline-primary">Sign up</button></Link>}
 								</div>
 							</div>
 						</div>

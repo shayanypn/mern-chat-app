@@ -1,8 +1,10 @@
 import React from 'react'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { USER, LOADING } from '../actions';
+import { SERVER } from '../config';
+import toastr from 'reactjs-toastr';
 
 import TopNavbar from '../components/TopNavbar';
 import Footer from '../components/Footer';
@@ -11,11 +13,22 @@ import Card from '../components/Card';
 class Register extends React.Component {
 
 	onSubmit() {
-
-		this.props.dispatch(USER.create({
+		axios.post(`${SERVER}/signup`,{
 			username: this.username.value,
 			password: this.password.value
-		}));
+		},{
+			headers: { 'Content-Type': 'application/json' }
+		})
+		.then( response => {
+			toastr.success('You are successfully registered!');
+		})
+		.catch( error => {
+			if (error.response.status === 409) {
+				toastr.error('This Username is already taken!');
+			}else{
+				toastr.error(error.response.message);
+			}
+		});
 	}
 
 	render(){
@@ -38,10 +51,6 @@ class Register extends React.Component {
 								<div className="form-group">
 									<label>Confirm Password</label>
 									<input type="password" ref={el => this.confirm_password=el} className="form-control" placeholder="Confirm Password" />
-								</div>
-								<div className="form-group form-check">
-									<input type="checkbox" className="form-check-input" />
-									<label className="form-check-label">Check me out</label>
 								</div>
 								<button
 									onClick={this.onSubmit.bind(this)}

@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import { subscribe } from 'redux-subscriber';
-
+import toastr from 'reactjs-toastr';
 import { socket } from './socket';
 import { USER, ROOM, CHANNEL, MESSAGE } from './actions';
 
@@ -28,6 +28,7 @@ class Main extends React.Component {
 				});
 				socket.emit('get_room');
 			} else if(result && result.status === 401) {
+				toastr.error('Authenticate problem, please login again');
 				this.onLogout();
 			} else if(result) {
 				console.log('authenticate problem' , error);
@@ -58,6 +59,7 @@ class Main extends React.Component {
 		});
 		socket.on('add_room', (result, error) => {
 			if (result) {
+				toastr.error('new room added successfully');
 				socket.emit('get_room');
 			}
 			if (error) {console.log('add_room' , error);}
@@ -83,6 +85,7 @@ class Main extends React.Component {
 		});
 		socket.on('add_room_channel', (result, error) => {
 			if (result) {
+				toastr.error('new channel added successfully');
 				this.loadRoomChannel();
 			}
 			if (error) {console.log('add_room_channel' , error);}

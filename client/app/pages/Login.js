@@ -1,8 +1,10 @@
 import React from 'react'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { USER, LOADING } from '../actions';
+import { SERVER } from '../config';
+import toastr from 'reactjs-toastr';
 
 import TopNavbar from '../components/TopNavbar';
 import Footer from '../components/Footer';
@@ -10,13 +12,26 @@ import Card from '../components/Card';
 
 class Login extends React.Component {
 	onSubmit() {
-
-		this.props.dispatch(USER.post({
+		axios.post(`${SERVER}/token`,{
 			username: this.username.value,
 			password: this.password.value
-		}));
+		},{
+			headers: { 'Content-Type': 'application/json' }
+		})
+		.then( response => {
+			this.props.dispatch({
+				type: USER.LOGIN,
+				token: response.data
+			});
+		})
+		.catch( (error, e1) => {
+			if (error.response.status === 401) {
+				toastr.error('Username or password is not valid!');
+			}else{
+				toastr.error(error.response.message);
+			}
+		});
 	}
-
 	render(){
 		return (
 			<div>
@@ -33,10 +48,6 @@ class Login extends React.Component {
 								<div className="form-group">
 									<label>Password</label>
 									<input type="password" ref={el => this.password=el} className="form-control" placeholder="Password" />
-								</div>
-								<div className="form-group form-check">
-									<input type="checkbox" className="form-check-input" />
-									<label className="form-check-label">Check me out</label>
 								</div>
 								<button
 									onClick={this.onSubmit.bind(this)}

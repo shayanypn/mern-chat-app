@@ -57,47 +57,6 @@ export const USER = {
 	CHECKTOKEN: 'CHECKTOKEN',
 	LOGOUT: 'LOGOUT',
 	AVATAR: 'USER_AVATAR',
-	post: (data) => {
-		return (dispatch) => {
-			return axios.post(`${SERVER}/token`,{
-				username: data.username,
-				password: data.password
-			},{
-				headers: { 'Content-Type': 'application/json' }
-			})
-			.then(function (response) {
-				var token = Object.assign({},response.data,data);
-				dispatch(LOADING.apply('form_login', false,{
-					type: USER.LOGIN,
-					token
-				}));
-			})
-			.catch( error => {
-				dispatch(LOADING.apply('form_login', false), HTTPHandler(error));
-			});
-		}
-	},
-	create: (data) => {
-		return (dispatch) => {
-			return axios.post(`${SERVER}/signup`,{
-				username: data.username,
-				password: data.password
-			},{
-				headers: { 'Content-Type': 'application/json' }
-			})
-			.then(function (response) {
-
-				// var token = Object.assign({},response.data,data);
-				// dispatch(LOADING.apply('form_login', false,{
-				// 	type: USER.LOGIN,
-				// 	token
-				// }));
-			})
-			.catch( error => {
-				dispatch(LOADING.apply('form_register', false), HTTPHandler(error));
-			});
-		}
-	},
 	delete: (token) => {
 		axios.delete(`${SERVER}/token/${token}`)
 		.then( response => {

@@ -24,6 +24,7 @@ import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.scss';
 //Include bootstrap's js
 import './../node_modules/bootstrap/dist/js/bootstrap.min.js';
+import 'reactjs-toastr/lib/toast.css';
 
 const store = configureStore({
     webapp: {
