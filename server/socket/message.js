@@ -133,6 +133,7 @@ const update = (req, client, ClientStore) => {
 							if (result) {
 								client.emit('update_message', {
 									id: req.id,
+									message: req.message,
 									status: 200
 								}, null);
 							}

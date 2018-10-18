@@ -13,6 +13,17 @@ import Card from '../components/Card';
 class Register extends React.Component {
 
 	onSubmit() {
+
+		if (!this.username.value || !this.password.value || !this.confirm_password.value) {
+			toastr.warning('please fill all blanks!');
+			return;
+		}
+
+		if (this.password.value !== this.confirm_password.value) {
+			toastr.warning('please passwords are not same!');
+			return;
+		}
+
 		axios.post(`${SERVER}/signup`,{
 			username: this.username.value,
 			password: this.password.value

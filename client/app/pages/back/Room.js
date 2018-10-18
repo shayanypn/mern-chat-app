@@ -15,15 +15,24 @@ class Room extends React.Component {
 		super(props);
 		this.state = {
 			timer: null,
-			avatar: 'https://dummyimage.com/200x200/4d394b/fff'
+			avatar: null
 		};
 	}
 	onSubmit(){
+
+		if (!this.room_name.value) {
+			toastr.warning('please enter a name for the room!');
+			return;
+		}
+
 		socket.emit('add_room', {
 			name: this.room_name.value,
 			description: this.room_description.value,
 			avatar: this.state.avatar
 		});
+		this.room_name.value = '';
+		this.room_description.value = '';
+		this.state.avatar = '';
 	}
 	onAvatarChange(image){
 		this.setState({
@@ -77,7 +86,7 @@ class Room extends React.Component {
 							</form>
 						</div>
 						<div className="col-4 text-center">
-							<img src={this.state.avatar}  className="w-100 rounded-circle"
+							<img src={this.state.avatar ? this.state.avatar : 'https://dummyimage.com/200x200/4d394b/fff'}  className="w-100 rounded-circle"
 									style={{maxWidth:170,maxHeight:170}} />
 						</div>
 					</div>

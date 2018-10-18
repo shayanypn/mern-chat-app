@@ -11,14 +11,20 @@ class Channel extends React.Component {
 
 	onSubmit(){
 		const { room } = this.props;
-
 		const active_room = room.find(x=> x.active);
+
+		if (!this.channel_name.value) {
+			toastr.warning('please enter a name for the chanel!');
+			return;
+		}
+
 		if (active_room) {
 			socket.emit('add_room_channel', {
 				room_id: active_room._id,
 				name: this.channel_name.value
 			});
-		};
+			this.channel_name.value = '';
+		}
 	}
 	render(){
 		const { channel } = this.props;
@@ -35,7 +41,7 @@ class Channel extends React.Component {
 						})}
 					</ul>
 				</div>
-				<Card parentClass="col-12 mt-3">
+				<Card parentClass="col-12 mt-3" cardClass="bg-light">
 					<form onSubmit={e => e.preventDefault() } >
 						<div className="form-group">
 							<label>Channel Name</label>

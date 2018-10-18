@@ -1,19 +1,20 @@
 import React from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import FileBase64 from 'react-file-base64';
-import Card from './../../components/Card';
+import toastr from 'reactjs-toastr';
 import { USER } from '../../actions';
+import { SERVER } from '../../config';
+
+import Card from './../../components/Card';
 
 class Setting extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			timer: null,
-			avatar: (props.user && props.user.avatar) 
-					? props.user.avatar 
-					: 'https://dummyimage.com/200x200/4d394b/fff'
+			avatar: (props.user && props.user.avatar) ? props.user.avatar : null
 		};
 	}
 	onAvatarChange(image){
@@ -24,10 +25,33 @@ class Setting extends React.Component {
 	onSubmit(){
 		const { user } = this.props;
 
-		this.props.dispatch(USER.updateAvatar({
-			avatar: this.state.avatar,
-			token: user.token
-		}));
+		if (!this.state.avatar) {
+			toastr.warning('please select an avatar!');
+			return;
+		}
+
+		axios.put(`${SERVER}/user/avatar`,{
+				avatar: this.state.avatar
+			},{
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': user.token
+				}
+			})
+		.then( response => {
+			toastr.success('avatar update successfully!');
+			this.props.dispatch({
+				type: USER.AVATAR,
+				avatar: this.state.avatar
+			});
+		})
+		.catch( (error, e1) => {
+			if (error.response.status === 422) {
+				toastr.error('please select an avatar!');
+			}else{
+				toastr.error(error.response.message);
+			}
+		});
 	}
 	render(){
 		const { room } = this.props;
@@ -52,7 +76,7 @@ class Setting extends React.Component {
 							</form>
 						</div>
 						<div className="col-5 text-center">
-							<img src={this.state.avatar} className="w-100 rounded-circle"
+							<img src={this.state.avatar ? this.state.avatar : 'https://dummyimage.com/200x200/4d394b/fff'} className="w-100 rounded-circle"
 									style={{maxWidth:170,maxHeight:170}} />
 						</div>
 					</div>

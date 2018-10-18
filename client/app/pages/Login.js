@@ -12,6 +12,12 @@ import Card from '../components/Card';
 
 class Login extends React.Component {
 	onSubmit() {
+
+		if (!this.username.value || !this.password.value) {
+			toastr.warning('please enter username and password!');
+			return;
+		}
+
 		axios.post(`${SERVER}/token`,{
 			username: this.username.value,
 			password: this.password.value

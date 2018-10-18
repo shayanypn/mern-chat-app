@@ -59,7 +59,7 @@ class Main extends React.Component {
 		});
 		socket.on('add_room', (result, error) => {
 			if (result) {
-				toastr.error('new room added successfully');
+				toastr.success('new room added successfully');
 				socket.emit('get_room');
 			}
 			if (error) {console.log('add_room' , error);}
@@ -85,7 +85,7 @@ class Main extends React.Component {
 		});
 		socket.on('add_room_channel', (result, error) => {
 			if (result) {
-				toastr.error('new channel added successfully');
+				toastr.success('new channel added successfully');
 				this.loadRoomChannel();
 			}
 			if (error) {console.log('add_room_channel' , error);}
@@ -100,7 +100,18 @@ class Main extends React.Component {
 			}
 			if (error) {console.log('get_channel_message' , error);}
 		});
-
+		socket.on('update_message', (result, error) => {
+			if (result) {
+				toastr.success('message updated successfully');
+			}
+			if (error) {console.log('update_message' , error);}
+		});
+		socket.on('delete_message', (result, error) => {
+			if (result) {
+				toastr.success('message deleted successfully');
+			}
+			if (error) {console.log('update_message' , error);}
+		});
 	}
 	loadRoomChannel(){
 		const { room } = this.props;

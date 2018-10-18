@@ -1,27 +1,30 @@
 import React from 'react'
-import { Switch, Route, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Moment from 'react-moment';
 import Ionicon from 'react-ionicons';
 import swal from 'sweetalert2';
+import toastr from 'reactjs-toastr';
+import { MESSAGE } from './../actions';
 import { socket } from './../socket';
 
 class ChatMessage extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			text: props._message.text,
 			editing: false,
 			deleted: false
 		}
 		socket.on('update_message', (result, error) => {
 			if (result) {
 				if (props._message._id === result.id) {
-					toastr.error('message updated successfully');
 					this.setState({
-						editing: false,
-						text: this.message_text.value
+						editing: false
+					});
+					this.props.dispatch({
+						type: MESSAGE.EDIT,
+						id: result.id,
+						message: result.message
 					});
 				}
 			}
@@ -30,7 +33,6 @@ class ChatMessage extends React.Component {
 		socket.on('delete_message', (result, error) => {
 			if (result) {
 				if (props._message._id === result.id) {
-					toastr.error('message deleted successfully');
 					this.setState({
 						deleted: true
 					});
@@ -107,13 +109,13 @@ class ChatMessage extends React.Component {
 								<div className="form-group">
 									<textarea className="form-control"
 										ref={el => this.message_text=el}
-										defaultValue={this.state.text} />
+										defaultValue={this._message.text} />
 								</div>
 								<div className="form-group">
 									<button onClick={this.onUpdate.bind(this)} className="btn btn-sm btn-success">Update</button>
 									<button onClick={this.onCancel.bind(this)} className="btn btn-sm btn-secondary ml-1">Cancel</button>
 								</div>
-							</div>) : <div>{this.state.text}</div>}
+							</div>) : <div>{_message.text}</div>}
 						</div>
 					</div>
 				</div>
